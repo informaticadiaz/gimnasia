@@ -233,6 +233,7 @@ export default {
   'Three sessions, the whole body each time.': 'Tres sesiones, todo el cuerpo en cada una.',
   '5×5': '5×5',
   'Five sets of five on the main barbell lifts.': 'Cinco series de cinco en los básicos con barra.',
+  'No equipment, three full-body sessions a week.': 'Sin equipamiento, tres sesiones de cuerpo completo por semana.',
   'Build my own plan': 'Crear mi propio plan',
   '{0} week streak': 'racha de {0} semanas',
   'this week': 'esta semana',
