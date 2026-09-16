@@ -52,6 +52,18 @@ const DUMBBELL = [
   ['db-b', 'Dumbbell B', 'dumbbell', [['1760', 3, 10], ['1459', 3, 10], ['0292', 3, 10], ['0426', 3, 10], ['1311', 3, 8]]]
 ]
 
+// One added piece of equipment over BODYWEIGHT: a pull-up bar, which unlocks a real vertical
+// pull (instead of Bodyweight's inverted-row/standing-row substitutes) and hanging core work.
+// Squat and hinge/glute reuse Bodyweight's exact same catalog-limited picks (see its own
+// comment above — still no plain air squat or a third clean bodyweight glute-bridge variant).
+// Anyone who cannot yet do a full pull-up/chin-up should substitute `0688` scapular pull-up or
+// Bodyweight's `0499` inverted row until ready (docs/ROUTINE_PULL_UP_BAR.md).
+const PULL_UP_BAR = [
+  ['pb-a', 'Pull-up Bar A', 'pullup', [['2368', 3, 10], ['0652', 3, 5], ['0662', 3, 8], ['3013', 3, 12], ['0472', 3, 8]]],
+  ['pb-b', 'Pull-up Bar B', 'pullup', [['2368', 3, 10], ['1326', 3, 5], ['1311', 3, 8], ['3561', 3, 10], ['1761', 3, 8]]],
+  ['pb-c', 'Pull-up Bar C', 'pullup', [['2368', 3, 10], ['0651', 3, 5], ['0283', 3, 8], ['3013', 3, 12], ['0475', 3, 8]]]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
 const PLANS = {
@@ -60,7 +72,8 @@ const PLANS = {
   'full-body': { routines: FULL_BODY, schedule: [[1, 'fb-a'], [3, 'fb-b'], [5, 'fb-c']] },
   '5x5': { routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
   bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
-  dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] }
+  dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
+  'pull-up-bar': { routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] }
 }
 
 const build = routines =>

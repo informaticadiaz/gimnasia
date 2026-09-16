@@ -236,6 +236,8 @@ export default {
   'No equipment, three full-body sessions a week.': 'Sin equipamiento, tres sesiones de cuerpo completo por semana.',
   'Dumbbell': 'Mancuernas',
   'Just a pair of dumbbells, two full-body sessions a week.': 'Solo un par de mancuernas, dos sesiones de cuerpo completo por semana.',
+  'Pull-up Bar': 'Barra de dominadas',
+  'Bodyweight training built around a pull-up bar, three sessions a week.': 'Entrenamiento con peso corporal centrado en una barra de dominadas, tres sesiones por semana.',
   'Build my own plan': 'Crear mi propio plan',
   '{0} week streak': 'racha de {0} semanas',
   'this week': 'esta semana',
