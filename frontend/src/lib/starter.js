@@ -32,13 +32,23 @@ const FIVE_BY_FIVE = [
   ['5x5-c', '5×5 C', 'barbell', [['0739', 5, 5], ['0047', 5, 5], ['1323', 5, 5]]]
 ]
 
+// No equipment at all — every id below carries eq:"body weight" in the catalog. The squat
+// pattern has no plain two-leg entry there (see docs/ROUTINE_BODYWEIGHT_NO_EQUIPMENT.md), so
+// split squats stand in across all three days; push, pull and core rotate for variety instead.
+const BODYWEIGHT = [
+  ['bw-a', 'Bodyweight A', 'stretch', [['2368', 3, 10], ['0662', 3, 8], ['0499', 3, 8], ['3013', 3, 12], ['0001', 3, 12]]],
+  ['bw-b', 'Bodyweight B', 'abs', [['2368', 3, 10], ['0283', 3, 8], ['0497', 3, 8], ['3561', 3, 10], ['0003', 3, 15]]],
+  ['bw-c', 'Bodyweight C', 'figureRun', [['2368', 3, 10], ['1311', 3, 8], ['3166', 3, 10], ['0464', 3, 10], ['0630', 3, 20]]]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
 const PLANS = {
   ppl: { routines: PPL, schedule: [[1, 'push'], [3, 'pull'], [5, 'legs']] },
   'upper-lower': { routines: UPPER_LOWER, schedule: [[1, 'upper-a'], [2, 'lower-a'], [4, 'upper-b'], [5, 'lower-b']] },
   'full-body': { routines: FULL_BODY, schedule: [[1, 'fb-a'], [3, 'fb-b'], [5, 'fb-c']] },
-  '5x5': { routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] }
+  '5x5': { routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
+  bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] }
 }
 
 const build = routines =>
