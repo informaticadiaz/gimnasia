@@ -93,7 +93,8 @@ const PLAN_COPY = {
   'upper-lower': () => ({ name: t('Upper / Lower'), about: t('Upper body twice, lower body twice.') }),
   'full-body': () => ({ name: t('Full Body'), about: t('Three sessions, the whole body each time.') }),
   '5x5': () => ({ name: t('5×5'), about: t('Five sets of five on the main barbell lifts.') }),
-  bodyweight: () => ({ name: t('Bodyweight'), about: t('No equipment, three full-body sessions a week.') })
+  bodyweight: () => ({ name: t('Bodyweight'), about: t('No equipment, three full-body sessions a week.') }),
+  dumbbell: () => ({ name: t('Dumbbell'), about: t('Just a pair of dumbbells, two full-body sessions a week.') })
 }
 
 // Adds the plan's routines and puts them on its weekdays. Existing routines are never touched

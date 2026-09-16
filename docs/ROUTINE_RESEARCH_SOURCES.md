@@ -19,6 +19,7 @@ This register records sources that may inform the professional routine catalog. 
 | [wger](https://github.com/wger-project/wger) | Licensed exercise catalog reference | Study catalog governance, attribution, translations, and per-entry license handling. | License varies by individual exercise asset; do not bulk import without per-item verification. | Strong reference for provenance and attribution workflow. |
 | [Bodyweight Fitness workouts](https://bodyweight.fitness/workouts) | Routine-design reference | Study exercise progressions and minimal-equipment structure. | Reference only until an explicit reuse license is verified. | Do not copy routines, text, or media into openGym. |
 | [OpenWeight](https://github.com/radupana/openweight) | Open program-data format | Model workout templates, multi-week programs, and completed sessions. | Apache-2.0; verify version and compatibility before adoption. | A format reference, not a source of programming content. |
+| [Weekly Training Frequency Effects on Strength Gain: A Meta-Analysis (PMC)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6081873/) | Evidence | Justify a 2×/week frequency specifically for untrained beginners, alongside the existing ACSM/WHO/U.S. Guidelines entries. | Do not copy text or routines. | Supports 2-3×/week as sufficient for previously-untrained individuals; higher-frequency splits (PPL, upper/lower) are for trained lifters, not a strict upgrade. |
 
 ## Created routine exemplars
 
@@ -32,6 +33,7 @@ These are examples of already-published routines to study for structure, exercis
 | [Boostcamp beginner programs](https://www.boostcamp.app/beginners) | Catalog of beginner programs across strength, upper/lower, PPL, dumbbell, and bodyweight approaches. | Compare market coverage, audience labels, and schedule patterns. | Reference only; programs belong to their authors and publishers. |
 | [Intrvl free training programs](https://intrvl.app/programs/) | Structured programs published as JSON, including strength templates. | Evaluate a candidate format and possible import source. | Candidate only; verify the exact repository license, program-level rights, and schema compatibility before import. |
 | [fit-file](https://github.com/nextfiveinc/fit-file) | A 12-week offline fitness program represented in JSON. | Study how a multi-week plan can be encoded with warm-up, cooldown, and workout arrays. | GPL-licensed repository; review program-content and compatibility obligations before any reuse. |
+| [Dumbbell Only Home Or Gym Full Body Workout — Muscle & Strength](https://www.muscleandstrength.com/workouts/dumbbell-only-home-or-gym-fullbody-workout.html) | Dumbbell-only, no-bench full-body structure for beginners. | Confirm which movement patterns are commonly trained without a bench (floor press, standing press, rows, lower body) and cross-check the "no floor press in the catalog" gap against real-world practice. | Reference only; do not copy exercises, text, or program structure verbatim. |
 
 ## Adoption rules
 

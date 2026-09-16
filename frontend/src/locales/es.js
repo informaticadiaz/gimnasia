@@ -234,6 +234,8 @@ export default {
   '5×5': '5×5',
   'Five sets of five on the main barbell lifts.': 'Cinco series de cinco en los básicos con barra.',
   'No equipment, three full-body sessions a week.': 'Sin equipamiento, tres sesiones de cuerpo completo por semana.',
+  'Dumbbell': 'Mancuernas',
+  'Just a pair of dumbbells, two full-body sessions a week.': 'Solo un par de mancuernas, dos sesiones de cuerpo completo por semana.',
   'Build my own plan': 'Crear mi propio plan',
   '{0} week streak': 'racha de {0} semanas',
   'this week': 'esta semana',

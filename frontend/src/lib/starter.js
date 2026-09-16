@@ -41,6 +41,17 @@ const BODYWEIGHT = [
   ['bw-c', 'Bodyweight C', 'figureRun', [['2368', 3, 10], ['1311', 3, 8], ['3166', 3, 10], ['0464', 3, 10], ['0630', 3, 20]]]
 ]
 
+// Dumbbells only, no bench (see docs/ROUTINE_DUMBBELL_NO_BENCH.md) — squat, hinge and press
+// repeat unchanged on both days (the highest-skill lifts, worth the repetition at only 2
+// sessions/week); only the row and the push vary, for some freshness without adding a third
+// day. No dumbbell floor press exists in the catalog (only barbell/kettlebell do), so the
+// push is the plan's one bodyweight exception: a push-up needs less equipment than a
+// dumbbell, not more, so it doesn't break the "just dumbbells" promise in practice.
+const DUMBBELL = [
+  ['db-a', 'Dumbbell A', 'dumbbell', [['1760', 3, 10], ['1459', 3, 10], ['0293', 3, 10], ['0426', 3, 10], ['0662', 3, 8]]],
+  ['db-b', 'Dumbbell B', 'dumbbell', [['1760', 3, 10], ['1459', 3, 10], ['0292', 3, 10], ['0426', 3, 10], ['1311', 3, 8]]]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
 const PLANS = {
@@ -48,7 +59,8 @@ const PLANS = {
   'upper-lower': { routines: UPPER_LOWER, schedule: [[1, 'upper-a'], [2, 'lower-a'], [4, 'upper-b'], [5, 'lower-b']] },
   'full-body': { routines: FULL_BODY, schedule: [[1, 'fb-a'], [3, 'fb-b'], [5, 'fb-c']] },
   '5x5': { routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
-  bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] }
+  bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
+  dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] }
 }
 
 const build = routines =>
