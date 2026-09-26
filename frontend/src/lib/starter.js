@@ -64,6 +64,15 @@ const PULL_UP_BAR = [
   ['pb-c', 'Pull-up Bar C', 'pullup', [['2368', 3, 10], ['0651', 3, 5], ['0283', 3, 8], ['3013', 3, 12], ['0475', 3, 8]]]
 ]
 
+// Resistance bands with handles plus a door anchor (docs/ROUTINE_RESISTANCE_BAND.md). The
+// catalog's only band squat (`1004`) needs a mini loop band, which this plan deliberately does not
+// assume — so A/C squat through `1003` band squat row and B reuses Bodyweight's `2368` split squats.
+const RESISTANCE_BAND = [
+  ['rb-a', 'Resistance Band A', 'figureStrength', [['1003', 3, 12], ['1010', 3, 12], ['3124', 3, 12], ['3116', 3, 12], ['0979', 3, 10]]],
+  ['rb-b', 'Resistance Band B', 'arm', [['2368', 3, 10], ['0991', 3, 12], ['0997', 3, 12], ['3144', 3, 12], ['1015', 3, 10]]],
+  ['rb-c', 'Resistance Band C', 'abs', [['1003', 3, 12], ['1010', 3, 12], ['0989', 3, 10], ['0974', 3, 12], ['1005', 3, 12]]]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
 const PLANS = {
@@ -73,7 +82,8 @@ const PLANS = {
   '5x5': { routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
   bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
   dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
-  'pull-up-bar': { routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] }
+  'pull-up-bar': { routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] },
+  'resistance-band': { routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] }
 }
 
 const build = routines =>
