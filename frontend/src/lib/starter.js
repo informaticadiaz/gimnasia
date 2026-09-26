@@ -82,6 +82,16 @@ const KETTLEBELL = [
   ['kb-c', 'Kettlebell C', 'kettlebell', [['0533', 3, 8], ['0549', 3, 20], ['0520', 3, 8], ['0522', 3, 10], ['0548', 3, 12]]]
 ]
 
+// A pair of dumbbells plus a pull-up bar, no bench (docs/ROUTINE_HOME_HYPERTROPHY.md) — the next
+// step for Dumbbell and Pull-up Bar graduates. Six exercises a day with arm and shoulder isolation
+// for volume. With no bench and no dumbbell floor press in the catalog, the horizontal push stays
+// a push-up variant (`1274` uses the dumbbells as handles) and progresses by reps, not load.
+const HOME_HYPERTROPHY = [
+  ['hh-a', 'Home Hypertrophy A', 'dumbbell', [['1760', 3, 10], ['0652', 3, 6], ['1274', 3, 10], ['1459', 3, 10], ['0334', 3, 12], ['0313', 3, 12]]],
+  ['hh-b', 'Home Hypertrophy B', 'dumbbell', [['0410', 3, 10], ['0292', 3, 10], ['0426', 3, 10], ['1326', 3, 6], ['0430', 3, 12], ['0472', 3, 10]]],
+  ['hh-c', 'Home Hypertrophy C', 'dumbbell', [['1760', 3, 12], ['0651', 3, 6], ['1311', 3, 10], ['1757', 3, 10], ['0294', 3, 12], ['0333', 3, 12]]]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
 const PLANS = {
@@ -93,7 +103,8 @@ const PLANS = {
   dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
   'pull-up-bar': { routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] },
   'resistance-band': { routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] },
-  kettlebell: { routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] }
+  kettlebell: { routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] },
+  'home-hypertrophy': { routines: HOME_HYPERTROPHY, schedule: [[1, 'hh-a'], [3, 'hh-b'], [5, 'hh-c']] }
 }
 
 const build = routines =>

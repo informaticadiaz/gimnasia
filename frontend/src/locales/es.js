@@ -242,6 +242,8 @@ export default {
   'Resistance bands and a door anchor, three full-body sessions a week.': 'Bandas elásticas y un anclaje de puerta, tres sesiones de cuerpo completo por semana.',
   'Kettlebell': 'Pesas rusas',
   'A pair of kettlebells for strength and conditioning, three sessions a week.': 'Un par de pesas rusas para fuerza y acondicionamiento, tres sesiones por semana.',
+  'Home Hypertrophy': 'Hipertrofia en casa',
+  'Dumbbells and a pull-up bar for muscle growth, three sessions a week.': 'Mancuernas y una barra de dominadas para ganar músculo, tres sesiones por semana.',
   'Build my own plan': 'Crear mi propio plan',
   '{0} week streak': 'racha de {0} semanas',
   'this week': 'esta semana',

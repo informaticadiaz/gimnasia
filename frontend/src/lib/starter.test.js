@@ -50,17 +50,22 @@ const APPROVED = {
     [3, 'Kettlebell B', [['0536', 3, 8], ['0552', 3, 8], ['0519', 3, 10], ['0521', 3, 8], ['0532', 3, 10]]],
     [5, 'Kettlebell C', [['0533', 3, 8], ['0549', 3, 20], ['0520', 3, 8], ['0522', 3, 10], ['0548', 3, 12]]],
   ],
+  'home-hypertrophy': [
+    [1, 'Home Hypertrophy A', [['1760', 3, 10], ['0652', 3, 6], ['1274', 3, 10], ['1459', 3, 10], ['0334', 3, 12], ['0313', 3, 12]]],
+    [3, 'Home Hypertrophy B', [['0410', 3, 10], ['0292', 3, 10], ['0426', 3, 10], ['1326', 3, 6], ['0430', 3, 12], ['0472', 3, 10]]],
+    [5, 'Home Hypertrophy C', [['1760', 3, 12], ['0651', 3, 6], ['1311', 3, 10], ['1757', 3, 10], ['0294', 3, 12], ['0333', 3, 12]]],
+  ],
 }
 
 const shape = r => r.ex.map(e => [e.id, e.sets, e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the nine plans, with the day count read off the schedule', () => {
+  it('offers exactly the ten plans, with the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
       { id: 'ppl', days: 3 }, { id: 'upper-lower', days: 4 },
       { id: 'full-body', days: 3 }, { id: '5x5', days: 3 }, { id: 'bodyweight', days: 3 },
       { id: 'dumbbell', days: 2 }, { id: 'pull-up-bar', days: 3 }, { id: 'resistance-band', days: 3 },
-      { id: 'kettlebell', days: 3 },
+      { id: 'kettlebell', days: 3 }, { id: 'home-hypertrophy', days: 3 },
     ])
     for (const { id, days } of starterPlanOptions()) expect(starterPlanDays(id)).toHaveLength(days)
   })
