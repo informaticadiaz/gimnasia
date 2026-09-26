@@ -49,11 +49,16 @@ afterEach(() => {
 })
 
 describe('starter plan chooser', () => {
-  it('lists every plan with its day count', () => {
+  it('lists every plan grouped by goal, with its day count', () => {
     starterPlanSheet()
     const host = renderTop()
-    expect([...host.querySelectorAll('.item .tt')].map(el => el.textContent))
-      .toEqual(['Push / Pull / Legs', 'Upper / Lower', 'Full Body', '5×5', 'Bodyweight', 'Dumbbell', 'Pull-up Bar', 'Resistance Band', 'Kettlebell', 'Home Hypertrophy', 'Dumbbell + Bench'])
+    // Each heading followed by the plan names under it, in the order they appear on screen.
+    const groups = [...host.querySelectorAll('h4.sec')].map(h => [h.textContent, [...h.nextElementSibling.querySelectorAll('.item .tt')].map(el => el.textContent)])
+    expect(groups).toEqual([
+      ['General fitness', ['Full Body', 'Bodyweight', 'Dumbbell', 'Pull-up Bar', 'Resistance Band']],
+      ['Strength', ['5×5', 'Kettlebell', 'Dumbbell + Bench']],
+      ['Hypertrophy', ['Push / Pull / Legs', 'Upper / Lower', 'Home Hypertrophy']],
+    ])
     expect(rowFor(host, 'Upper / Lower').querySelector('.ss').textContent).toContain('4 days per week')
   })
 

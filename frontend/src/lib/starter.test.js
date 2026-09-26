@@ -65,13 +65,14 @@ const APPROVED = {
 const shape = r => r.ex.map(e => [e.id, e.sets, e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the eleven plans, with the day count read off the schedule', () => {
+  it('offers exactly the eleven plans, each with its goal and the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
-      { id: 'ppl', days: 3 }, { id: 'upper-lower', days: 4 },
-      { id: 'full-body', days: 3 }, { id: '5x5', days: 3 }, { id: 'bodyweight', days: 3 },
-      { id: 'dumbbell', days: 2 }, { id: 'pull-up-bar', days: 3 }, { id: 'resistance-band', days: 3 },
-      { id: 'kettlebell', days: 3 }, { id: 'home-hypertrophy', days: 3 },
-      { id: 'dumbbell-bench', days: 3 },
+      { id: 'ppl', days: 3, goal: 'hypertrophy' }, { id: 'upper-lower', days: 4, goal: 'hypertrophy' },
+      { id: 'full-body', days: 3, goal: 'general' }, { id: '5x5', days: 3, goal: 'strength' },
+      { id: 'bodyweight', days: 3, goal: 'general' }, { id: 'dumbbell', days: 2, goal: 'general' },
+      { id: 'pull-up-bar', days: 3, goal: 'general' }, { id: 'resistance-band', days: 3, goal: 'general' },
+      { id: 'kettlebell', days: 3, goal: 'strength' }, { id: 'home-hypertrophy', days: 3, goal: 'hypertrophy' },
+      { id: 'dumbbell-bench', days: 3, goal: 'strength' },
     ])
     for (const { id, days } of starterPlanOptions()) expect(starterPlanDays(id)).toHaveLength(days)
   })

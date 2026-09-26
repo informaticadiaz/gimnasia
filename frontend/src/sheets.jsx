@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { useStore } from './store/useStore.js'
 import { useUI } from './store/useUI.js'
 import { EXDB, EXIDX, BODYPARTS, isCardio, isBodyweightEq, allExercises, equipmentOf, smOf, matchExercise, exOr } from './lib/exercises.js'
@@ -102,6 +102,13 @@ const PLAN_COPY = {
   'dumbbell-bench': () => ({ name: t('Dumbbell + Bench'), about: t('Dumbbells and a flat bench for strength, three sessions a week.') })
 }
 
+// The chooser's sections, in display order — keyed by the goal each plan carries in lib/starter.js.
+const PLAN_GOALS = [
+  ['general', () => t('General fitness')],
+  ['strength', () => t('Strength')],
+  ['hypertrophy', () => t('Hypertrophy')]
+]
+
 // Adds the plan's routines and puts them on its weekdays. Existing routines are never touched
 // and only the weekdays the plan asks for are reassigned; an id with no plan behind it changes
 // nothing at all. planId is deliberately required — a default invites `onClick={loadStarterPlan}`,
@@ -137,18 +144,22 @@ function StarterPlanChooser({ close }) {
       onConfirm: () => loadStarterPlan(id)
     })
   }
+  const options = starterPlanOptions()
   return <>
     <h3>{t('Choose starter plan')}</h3>
-    <div className="list">
-      {starterPlanOptions().map(({ id, days }) => {
-        const { name, about } = PLAN_COPY[id]()
-        return <div key={id} className="item" {...tappable(() => choose(id, name))}>
-          <span className="lrow-i" style={{ background: 'var(--surface-3)' }}><Icon name="sparkles" /></span>
-          <div className="grow"><div className="tt">{name}</div><div className="ss">{t('{0} days per week', days)} · {about}</div></div>
-          <Icon name="chevronRight" className="chev" />
-        </div>
-      })}
-    </div>
+    {PLAN_GOALS.map(([goal, label]) => <Fragment key={goal}>
+      <h4 className="sec">{label()}</h4>
+      <div className="list">
+        {options.filter(o => o.goal === goal).map(({ id, days }) => {
+          const { name, about } = PLAN_COPY[id]()
+          return <div key={id} className="item" {...tappable(() => choose(id, name))}>
+            <span className="lrow-i" style={{ background: 'var(--surface-3)' }}><Icon name="sparkles" /></span>
+            <div className="grow"><div className="tt">{name}</div><div className="ss">{t('{0} days per week', days)} · {about}</div></div>
+            <Icon name="chevronRight" className="chev" />
+          </div>
+        })}
+      </div>
+    </Fragment>)}
   </>
 }
 

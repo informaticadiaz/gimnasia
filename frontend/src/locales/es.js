@@ -245,6 +245,7 @@ export default {
   'Home Hypertrophy': 'Hipertrofia en casa',
   'Dumbbells and a pull-up bar for muscle growth, three sessions a week.': 'Mancuernas y una barra de dominadas para ganar músculo, tres sesiones por semana.',
   'Dumbbell + Bench': 'Mancuernas + banco',
+  'Hypertrophy': 'Hipertrofia',
   'Dumbbells and a flat bench for strength, three sessions a week.': 'Mancuernas y un banco plano para ganar fuerza, tres sesiones por semana.',
   'Build my own plan': 'Crear mi propio plan',
   '{0} week streak': 'racha de {0} semanas',

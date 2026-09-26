@@ -104,18 +104,20 @@ const DUMBBELL_BENCH = [
 
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
+// goal is what the chooser groups by: 'general', 'strength' or 'hypertrophy'.
 const PLANS = {
-  ppl: { routines: PPL, schedule: [[1, 'push'], [3, 'pull'], [5, 'legs']] },
-  'upper-lower': { routines: UPPER_LOWER, schedule: [[1, 'upper-a'], [2, 'lower-a'], [4, 'upper-b'], [5, 'lower-b']] },
-  'full-body': { routines: FULL_BODY, schedule: [[1, 'fb-a'], [3, 'fb-b'], [5, 'fb-c']] },
-  '5x5': { routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
-  bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
-  dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
-  'pull-up-bar': { routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] },
-  'resistance-band': { routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] },
-  kettlebell: { routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] },
-  'home-hypertrophy': { routines: HOME_HYPERTROPHY, schedule: [[1, 'hh-a'], [3, 'hh-b'], [5, 'hh-c']] },
-  'dumbbell-bench': { routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] }
+  ppl: { goal: 'hypertrophy', routines: PPL, schedule: [[1, 'push'], [3, 'pull'], [5, 'legs']] },
+  'upper-lower': { goal: 'hypertrophy', routines: UPPER_LOWER, schedule: [[1, 'upper-a'], [2, 'lower-a'], [4, 'upper-b'], [5, 'lower-b']] },
+  'full-body': { goal: 'general', routines: FULL_BODY, schedule: [[1, 'fb-a'], [3, 'fb-b'], [5, 'fb-c']] },
+  '5x5': { goal: 'strength', routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
+  bodyweight: { goal: 'general', routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
+  dumbbell: { goal: 'general', routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
+  'pull-up-bar': { goal: 'general', routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] },
+  'resistance-band': { goal: 'general', routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] },
+  // Strength and conditioning; filed under strength, the half the chooser can name in one word.
+  kettlebell: { goal: 'strength', routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] },
+  'home-hypertrophy': { goal: 'hypertrophy', routines: HOME_HYPERTROPHY, schedule: [[1, 'hh-a'], [3, 'hh-b'], [5, 'hh-c']] },
+  'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] }
 }
 
 const build = routines =>
@@ -125,10 +127,10 @@ const build = routines =>
 // top of exactly these three, so this entry point keeps its shape.
 export const starterRoutines = () => build(PPL)
 
-// [{ id, days }] for the chooser. The day count is read off the schedule rather than stored
+// [{ id, days, goal }] for the chooser. The day count is read off the schedule rather than stored
 // beside it, so the two can never disagree.
 export const starterPlanOptions = () =>
-  Object.entries(PLANS).map(([id, { schedule }]) => ({ id, days: schedule.length }))
+  Object.entries(PLANS).map(([id, { goal, schedule }]) => ({ id, days: schedule.length, goal }))
 
 // The weekdays a plan would claim, or null for an unknown id.
 export const starterPlanDays = id => PLANS[id]?.schedule.map(([day]) => day) ?? null

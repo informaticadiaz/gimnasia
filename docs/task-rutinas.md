@@ -93,6 +93,8 @@ timed-interval plan; no documented brief for three of the four gym plans
 - **Catalog-limited picks.** Known holes: no plain air squat (E0), no dumbbell floor press (E3), no
   kettlebell deadlift or carry (E4).
 - **UI copy lives in `sheets.jsx`** inside `t()` calls, with an `es` translation, not in `starter.js`.
+- **Every plan declares a `goal`** in `PLANS` (`general`, `strength`, `hypertrophy`); the chooser
+  groups by it. A new goal (e.g. mobility) also needs a heading in `PLAN_GOALS` in `sheets.jsx`.
 - **Every plan needs a failing test first** (`starter.test.js`) and a routine doc in `docs/`.
 
 ## Backlog
@@ -144,7 +146,8 @@ Open questions the projections raise (resolve before the first one that needs it
 - [ ] Verify the time-based progression rule can express holds and intervals (blocks #5, #6).
 - [ ] Audit catalog for mobility/stretching entries and their movement patterns (blocks #6).
 - [ ] Decide whether starter plans should set an explicit progression policy (A9), and which per goal.
-- [ ] Decide how the plan chooser groups a growing list (by goal? by equipment?) before it passes ~10 plans.
+- [x] Decide how the plan chooser groups a growing list — by goal (general fitness, strength,
+  hypertrophy), chosen with the user on 2026-09-26 over grouping by equipment.
 - [ ] Track catalog gaps (air squat, dumbbell floor press, a tube-band squat, kettlebell deadlift,
   kettlebell carry) as candidate custom entries.
 
@@ -156,3 +159,4 @@ Open questions the projections raise (resolve before the first one that needs it
 - 2026-09-26 — Added the nine routine axes (A1–A9), a type-of-training list, and ten longer-horizon projections (P1–P10).
 - 2026-09-26 — #3 Home Hypertrophy shipped (dumbbells + pull-up bar, no bench, trained base, Mon/Wed/Fri A/B/C).
 - 2026-09-26 — #4 Dumbbell + Bench shipped (flat bench, strength, Dumbbell graduates, Mon/Wed/Fri A/B/C).
+- 2026-09-26 — Plan chooser grouped by goal (General fitness / Strength / Hypertrophy).
