@@ -37,7 +37,8 @@ next and tracks progress; it does not replace the per-routine brief.
 | `kettlebell` | Strength + conditioning | E4 | 3 | [Kettlebell](ROUTINE_KETTLEBELL.md) |
 
 Gaps at a glance: no mobility plan at any tier; conditioning only as volume (Kettlebell), no
-timed-interval plan; no home hypertrophy plan; no documented brief for the four gym plans.
+timed-interval plan; no home hypertrophy plan; no documented brief for three of the four gym plans
+(`ppl`, `upper-lower`, `full-body`).
 
 ## Constraints that shape every task
 
@@ -70,7 +71,8 @@ Priority order is a proposal; confirm before starting each task. Status: `todo` 
 - [ ] Verify the time-based progression rule can express holds and intervals (blocks #5, #6).
 - [ ] Audit catalog for mobility/stretching entries and their movement patterns (blocks #6).
 - [ ] Decide how the plan chooser groups a growing list (by goal? by equipment?) before it passes ~10 plans.
-- [ ] Track catalog gaps (air squat, dumbbell floor press, a tube-band squat) as candidate custom entries.
+- [ ] Track catalog gaps (air squat, dumbbell floor press, a tube-band squat, kettlebell deadlift,
+  kettlebell carry) as candidate custom entries.
 
 ## Log
 
