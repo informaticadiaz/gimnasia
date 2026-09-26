@@ -96,7 +96,8 @@ const PLAN_COPY = {
   bodyweight: () => ({ name: t('Bodyweight'), about: t('No equipment, three full-body sessions a week.') }),
   dumbbell: () => ({ name: t('Dumbbell'), about: t('Just a pair of dumbbells, two full-body sessions a week.') }),
   'pull-up-bar': () => ({ name: t('Pull-up Bar'), about: t('Bodyweight training built around a pull-up bar, three sessions a week.') }),
-  'resistance-band': () => ({ name: t('Resistance Band'), about: t('Resistance bands and a door anchor, three full-body sessions a week.') })
+  'resistance-band': () => ({ name: t('Resistance Band'), about: t('Resistance bands and a door anchor, three full-body sessions a week.') }),
+  kettlebell: () => ({ name: t('Kettlebell'), about: t('A pair of kettlebells for strength and conditioning, three sessions a week.') })
 }
 
 // Adds the plan's routines and puts them on its weekdays. Existing routines are never touched

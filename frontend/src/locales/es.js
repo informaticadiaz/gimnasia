@@ -240,6 +240,8 @@ export default {
   'Bodyweight training built around a pull-up bar, three sessions a week.': 'Entrenamiento con peso corporal centrado en una barra de dominadas, tres sesiones por semana.',
   'Resistance Band': 'Bandas elásticas',
   'Resistance bands and a door anchor, three full-body sessions a week.': 'Bandas elásticas y un anclaje de puerta, tres sesiones de cuerpo completo por semana.',
+  'Kettlebell': 'Pesas rusas',
+  'A pair of kettlebells for strength and conditioning, three sessions a week.': 'Un par de pesas rusas para fuerza y acondicionamiento, tres sesiones por semana.',
   'Build my own plan': 'Crear mi propio plan',
   '{0} week streak': 'racha de {0} semanas',
   'this week': 'esta semana',

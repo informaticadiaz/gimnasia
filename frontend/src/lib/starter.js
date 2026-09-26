@@ -73,6 +73,15 @@ const RESISTANCE_BAND = [
   ['rb-c', 'Resistance Band C', 'abs', [['1003', 3, 12], ['1010', 3, 12], ['0989', 3, 10], ['0974', 3, 12], ['1005', 3, 12]]]
 ]
 
+// A matched pair of kettlebells (docs/ROUTINE_KETTLEBELL.md), for people with a training base —
+// the swing is ballistic and technical. The catalog has no kettlebell deadlift, so the swing is
+// the plan's pure hinge on A and C, and B hinges through the two-arm clean.
+const KETTLEBELL = [
+  ['kb-a', 'Kettlebell A', 'kettlebell', [['0534', 3, 10], ['0549', 3, 15], ['0553', 3, 8], ['1345', 3, 10], ['0554', 3, 6]]],
+  ['kb-b', 'Kettlebell B', 'kettlebell', [['0536', 3, 8], ['0552', 3, 8], ['0519', 3, 10], ['0521', 3, 8], ['0532', 3, 10]]],
+  ['kb-c', 'Kettlebell C', 'kettlebell', [['0533', 3, 8], ['0549', 3, 20], ['0520', 3, 8], ['0522', 3, 10], ['0548', 3, 12]]]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
 const PLANS = {
@@ -83,7 +92,8 @@ const PLANS = {
   bodyweight: { routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
   dumbbell: { routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
   'pull-up-bar': { routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] },
-  'resistance-band': { routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] }
+  'resistance-band': { routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] },
+  kettlebell: { routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] }
 }
 
 const build = routines =>

@@ -34,9 +34,10 @@ next and tracks progress; it does not replace the per-routine brief.
 | `pull-up-bar` | General fitness | E1 | 3 | [Pull-up Bar](ROUTINE_PULL_UP_BAR.md) |
 | `dumbbell` | General fitness | E3 | 2 | [Dumbbell](ROUTINE_DUMBBELL_NO_BENCH.md) |
 | `resistance-band` | General fitness | E2 | 3 | [Resistance Band](ROUTINE_RESISTANCE_BAND.md) |
+| `kettlebell` | Strength + conditioning | E4 | 3 | [Kettlebell](ROUTINE_KETTLEBELL.md) |
 
-Gaps at a glance: no conditioning or mobility plan at any tier; no home plan beyond beginner
-general fitness; no kettlebell plan; no documented brief for the four gym plans.
+Gaps at a glance: no mobility plan at any tier; conditioning only as volume (Kettlebell), no
+timed-interval plan; no home hypertrophy plan; no documented brief for the four gym plans.
 
 ## Constraints that shape every task
 
@@ -44,7 +45,8 @@ general fitness; no kettlebell plan; no documented brief for the four gym plans.
   weeks, no multi-week blocks.
 - **Prescription is sets × reps, weight starts at 0.** Timed work (holds, intervals) must fit the
   existing time-based progression rule in `lib/progression.js` — verify before promising it.
-- **Catalog-limited picks.** Known holes: no plain air squat (E0), no dumbbell floor press (E3).
+- **Catalog-limited picks.** Known holes: no plain air squat (E0), no dumbbell floor press (E3), no
+  kettlebell deadlift or carry (E4).
 - **UI copy lives in `sheets.jsx`** inside `t()` calls, with an `es` translation, not in `starter.js`.
 - **Every plan needs a failing test first** (`starter.test.js`) and a routine doc in `docs/`.
 
@@ -56,7 +58,7 @@ Priority order is a proposal; confirm before starting each task. Status: `todo` 
 | # | Plan | Goal | Tier | Why this slot | Status |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Resistance Band | General fitness | E2 | Cheapest home upgrade after E0/E1; 61 catalog entries to audit. | done |
-| 2 | Kettlebell | Conditioning + strength | E4 | Opens the conditioning goal with one tool; swings/goblet/carries. | todo |
+| 2 | Kettlebell | Conditioning + strength | E4 | Opens the conditioning goal; a matched pair, swing-based (catalog has no KB carry). | done |
 | 3 | Home Hypertrophy | Hypertrophy | E3 + E1 | Next step for Dumbbell/Pull-up Bar graduates; covers vertical pull. | todo |
 | 4 | Dumbbell + Bench | Strength | E5 | Real horizontal press; closes the floor-press gap. | todo |
 | 5 | Bodyweight Conditioning | Conditioning | E0 | Circuit format — first verify time-based progression fits. | todo |
@@ -74,3 +76,4 @@ Priority order is a proposal; confirm before starting each task. Status: `todo` 
 
 - 2026-09-26 — Roadmap created. Seven plans shipped; backlog of seven proposed.
 - 2026-09-26 — #1 Resistance Band shipped (tube bands + door anchor, Mon/Wed/Fri A/B/C).
+- 2026-09-26 — #2 Kettlebell shipped (matched pair, trained-base audience, Mon/Wed/Fri A/B/C).
