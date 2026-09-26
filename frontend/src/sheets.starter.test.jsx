@@ -62,6 +62,14 @@ describe('starter plan chooser', () => {
     expect(rowFor(host, 'Upper / Lower').querySelector('.ss').textContent).toContain('4 days per week')
   })
 
+  it('marks the plans that need a gym, and only those', () => {
+    starterPlanSheet()
+    const host = renderTop()
+    const atGym = name => rowFor(host, name).querySelector('.ss').textContent.startsWith('At the gym · ')
+    for (const name of ['Push / Pull / Legs', 'Upper / Lower', 'Full Body', '5×5']) expect(atGym(name), name).toBe(true)
+    for (const name of ['Bodyweight', 'Dumbbell', 'Kettlebell', 'Home Hypertrophy', 'Dumbbell + Bench']) expect(atGym(name), name).toBe(false)
+  })
+
   it('loads straight away when the plan’s weekdays are free, without asking', () => {
     useStore.setState(s => ({ S: { ...s.S, week: { 0: ['mine'], 6: ['mine'] } } }))
     choose('Upper / Lower')

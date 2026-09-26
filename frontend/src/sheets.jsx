@@ -87,12 +87,14 @@ export function confirmSheet(opts) {
 /* ============================ starter plan ============================ */
 // Plan names and blurbs live here, not in lib/starter.js: check-source-strings.mjs only finds
 // string literals written inside a t() call, so copy parked in the catalog and passed in as a
-// variable is invisible to it — it would quietly stay English in every language.
+// variable is invisible to it — it would quietly stay English in every language. `where` marks the
+// plans that need a gym; it reuses an already-translated string, so the blurbs (and their existing
+// translations) stay as they are.
 const PLAN_COPY = {
-  ppl: () => ({ name: t('Push / Pull / Legs'), about: t('Push, pull and legs each get their own day.') }),
-  'upper-lower': () => ({ name: t('Upper / Lower'), about: t('Upper body twice, lower body twice.') }),
-  'full-body': () => ({ name: t('Full Body'), about: t('Three sessions, the whole body each time.') }),
-  '5x5': () => ({ name: t('5×5'), about: t('Five sets of five on the main barbell lifts.') }),
+  ppl: () => ({ name: t('Push / Pull / Legs'), where: t('At the gym'), about: t('Push, pull and legs each get their own day.') }),
+  'upper-lower': () => ({ name: t('Upper / Lower'), where: t('At the gym'), about: t('Upper body twice, lower body twice.') }),
+  'full-body': () => ({ name: t('Full Body'), where: t('At the gym'), about: t('Three sessions, the whole body each time.') }),
+  '5x5': () => ({ name: t('5×5'), where: t('At the gym'), about: t('Five sets of five on the main barbell lifts.') }),
   bodyweight: () => ({ name: t('Bodyweight'), about: t('No equipment, three full-body sessions a week.') }),
   dumbbell: () => ({ name: t('Dumbbell'), about: t('Just a pair of dumbbells, two full-body sessions a week.') }),
   'pull-up-bar': () => ({ name: t('Pull-up Bar'), about: t('Bodyweight training built around a pull-up bar, three sessions a week.') }),
@@ -151,10 +153,10 @@ function StarterPlanChooser({ close }) {
       <h4 className="sec">{label()}</h4>
       <div className="list">
         {options.filter(o => o.goal === goal).map(({ id, days }) => {
-          const { name, about } = PLAN_COPY[id]()
+          const { name, where, about } = PLAN_COPY[id]()
           return <div key={id} className="item" {...tappable(() => choose(id, name))}>
             <span className="lrow-i" style={{ background: 'var(--surface-3)' }}><Icon name="sparkles" /></span>
-            <div className="grow"><div className="tt">{name}</div><div className="ss">{t('{0} days per week', days)} · {about}</div></div>
+            <div className="grow"><div className="tt">{name}</div><div className="ss">{where && `${where} · `}{t('{0} days per week', days)} · {about}</div></div>
             <Icon name="chevronRight" className="chev" />
           </div>
         })}
