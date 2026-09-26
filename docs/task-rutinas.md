@@ -14,7 +14,7 @@ Every brief — and every projection below — must state a value on each axis.
 | # | Axis | Values | Covered today | Missing |
 | --- | --- | --- | --- | --- |
 | A1 | Goal | strength, hypertrophy, general fitness, conditioning, mobility | strength, hypertrophy, general fitness, conditioning (volume only) | mobility; timed conditioning |
-| A2 | Equipment | E0–E6 (table below) | E0, E1, E2, E3, E4, E6, E3+E1 | E5; other combined tiers |
+| A2 | Equipment | E0–E6 (table below) | E0, E1, E2, E3, E4, E5, E6, E3+E1 | other combined tiers |
 | A3 | Level | beginner, trained base, intermediate, advanced | beginner, trained base (Kettlebell) | intermediate, advanced |
 | A4 | Frequency | 2, 3, 4, 5–6 days/week | 2, 3, 4 | 5–6 |
 | A5 | Session length | short (≤30 min), standard (45–60 min), long (60+ min) | standard | short, long |
@@ -57,7 +57,7 @@ What kind of training each routine is, independent of the equipment it uses.
 | Type | Status |
 | --- | --- |
 | General fitness | Covered (Bodyweight, Pull-up Bar, Dumbbell, Resistance Band, Full Body) |
-| Strength | Covered (5×5, Kettlebell) |
+| Strength | Covered (5×5, Kettlebell, Dumbbell + Bench) |
 | Hypertrophy | Covered (PPL, Upper/Lower at the gym; Home Hypertrophy at home) |
 | Conditioning / circuits | Partly (Kettlebell); dedicated plan pending (#5) |
 | Mobility / stretching | Pending (#6) |
@@ -78,9 +78,10 @@ What kind of training each routine is, independent of the equipment it uses.
 | `resistance-band` | General fitness | E2 | 3 | [Resistance Band](ROUTINE_RESISTANCE_BAND.md) |
 | `kettlebell` | Strength + conditioning | E4 | 3 | [Kettlebell](ROUTINE_KETTLEBELL.md) |
 | `home-hypertrophy` | Hypertrophy | E3 + E1 | 3 | [Home Hypertrophy](ROUTINE_HOME_HYPERTROPHY.md) |
+| `dumbbell-bench` | Strength | E5 | 3 | [Dumbbell + Bench](ROUTINE_DUMBBELL_BENCH.md) |
 
 Gaps at a glance: no mobility plan at any tier; conditioning only as volume (Kettlebell), no
-timed-interval plan; no loaded horizontal press at home (needs a bench, #4); no documented brief for three of the four gym plans
+timed-interval plan; no documented brief for three of the four gym plans
 (`ppl`, `upper-lower`, `full-body`).
 
 ## Constraints that shape every task
@@ -104,7 +105,7 @@ Priority order is a proposal; confirm before starting each task. Status: `todo` 
 | 1 | Resistance Band | General fitness | E2 | Cheapest home upgrade after E0/E1; 61 catalog entries to audit. | done |
 | 2 | Kettlebell | Conditioning + strength | E4 | Opens the conditioning goal; a matched pair, swing-based (catalog has no KB carry). | done |
 | 3 | Home Hypertrophy | Hypertrophy | E3 + E1 | Next step for Dumbbell/Pull-up Bar graduates; covers vertical pull. | done |
-| 4 | Dumbbell + Bench | Strength | E5 | Real horizontal press; closes the floor-press gap. | todo |
+| 4 | Dumbbell + Bench | Strength | E5 | Real horizontal press; closes the floor-press gap. | done |
 | 5 | Bodyweight Conditioning | Conditioning | E0 | Circuit format — first verify time-based progression fits. | todo |
 | 6 | Mobility | Mobility | E0 | Needs a stretching/mobility audit of the catalog first. | todo |
 | 7 | Gym plan briefs | — | E6 | Write retroactive briefs/docs for `ppl`, `upper-lower`, `full-body`. | todo |
@@ -154,3 +155,4 @@ Open questions the projections raise (resolve before the first one that needs it
 - 2026-09-26 — #2 Kettlebell shipped (matched pair, trained-base audience, Mon/Wed/Fri A/B/C).
 - 2026-09-26 — Added the nine routine axes (A1–A9), a type-of-training list, and ten longer-horizon projections (P1–P10).
 - 2026-09-26 — #3 Home Hypertrophy shipped (dumbbells + pull-up bar, no bench, trained base, Mon/Wed/Fri A/B/C).
+- 2026-09-26 — #4 Dumbbell + Bench shipped (flat bench, strength, Dumbbell graduates, Mon/Wed/Fri A/B/C).
