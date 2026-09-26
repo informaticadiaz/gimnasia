@@ -21,3 +21,13 @@ node_modules
 junit.xml
 coverage/
 frontend/bundle-size.json
+
+# This machine's own deploy tooling — paths and layout are specific to this bare-metal
+# instance (see CLAUDE.local.md), not the generic Docker Compose deploy in docs/SELF_HOSTING.md.
+scripts/deploy-frontend.sh
+
+# This machine's own AI-session context and system config — never public repo content
+# (see the "Repo / remotes plan" note in CLAUDE.local.md for why).
+*.local.md
+.codegraph/
+.atl/
