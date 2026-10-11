@@ -101,14 +101,18 @@ const PLAN_COPY = {
   'resistance-band': () => ({ name: t('Resistance Band'), about: t('Resistance bands and a door anchor, three full-body sessions a week.') }),
   kettlebell: () => ({ name: t('Kettlebell'), about: t('A pair of kettlebells for strength and conditioning, three sessions a week.') }),
   'home-hypertrophy': () => ({ name: t('Home Hypertrophy'), about: t('Dumbbells and a pull-up bar for muscle growth, three sessions a week.') }),
-  'dumbbell-bench': () => ({ name: t('Dumbbell + Bench'), about: t('Dumbbells and a flat bench for strength, three sessions a week.') })
+  'dumbbell-bench': () => ({ name: t('Dumbbell + Bench'), about: t('Dumbbells and a flat bench for strength, three sessions a week.') }),
+  'bodyweight-conditioning': () => ({ name: t('Bodyweight Conditioning'), about: t('No equipment, one timed circuit a session, three sessions a week.') }),
+  mobility: () => ({ name: t('Mobility'), about: t('No equipment, gentle full-body holds twice a week.') })
 }
 
 // The chooser's sections, in display order — keyed by the goal each plan carries in lib/starter.js.
 const PLAN_GOALS = [
   ['general', () => t('General fitness')],
   ['strength', () => t('Strength')],
-  ['hypertrophy', () => t('Hypertrophy')]
+  ['hypertrophy', () => t('Hypertrophy')],
+  ['conditioning', () => t('Conditioning')],
+  ['mobility', () => t('Mobility')]
 ]
 
 // Adds the plan's routines and puts them on its weekdays. Existing routines are never touched

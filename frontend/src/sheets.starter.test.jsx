@@ -58,6 +58,8 @@ describe('starter plan chooser', () => {
       ['General fitness', ['Full Body', 'Bodyweight', 'Dumbbell', 'Pull-up Bar', 'Resistance Band']],
       ['Strength', ['5×5', 'Kettlebell', 'Dumbbell + Bench']],
       ['Hypertrophy', ['Push / Pull / Legs', 'Upper / Lower', 'Home Hypertrophy']],
+      ['Conditioning', ['Bodyweight Conditioning']],
+      ['Mobility', ['Mobility']],
     ])
     expect(rowFor(host, 'Upper / Lower').querySelector('.ss').textContent).toContain('4 days per week')
   })

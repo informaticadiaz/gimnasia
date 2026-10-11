@@ -13,7 +13,7 @@ Every brief — and every projection below — must state a value on each axis.
 
 | # | Axis | Values | Covered today | Missing |
 | --- | --- | --- | --- | --- |
-| A1 | Goal | strength, hypertrophy, general fitness, conditioning, mobility | strength, hypertrophy, general fitness, conditioning (volume only) | mobility; timed conditioning |
+| A1 | Goal | strength, hypertrophy, general fitness, conditioning, mobility | strength, hypertrophy, general fitness, conditioning | mobility |
 | A2 | Equipment | E0–E6 (table below) | E0, E1, E2, E3, E4, E5, E6, E3+E1 | other combined tiers |
 | A3 | Level | beginner, trained base, intermediate, advanced | beginner, trained base (Kettlebell) | intermediate, advanced |
 | A4 | Frequency | 2, 3, 4, 5–6 days/week | 2, 3, 4 | 5–6 |
@@ -59,8 +59,8 @@ What kind of training each routine is, independent of the equipment it uses.
 | General fitness | Covered (Bodyweight, Pull-up Bar, Dumbbell, Resistance Band, Full Body) |
 | Strength | Covered (5×5, Kettlebell, Dumbbell + Bench) |
 | Hypertrophy | Covered (PPL, Upper/Lower at the gym; Home Hypertrophy at home) |
-| Conditioning / circuits | Partly (Kettlebell); dedicated plan pending (#5) |
-| Mobility / stretching | Pending (#6) |
+| Conditioning / circuits | Covered (Bodyweight Conditioning, timed circuit; Kettlebell by volume) |
+| Mobility / stretching | Covered (Mobility, timed holds) |
 | Calisthenics | Future |
 | Functional training | Future |
 
@@ -79,9 +79,10 @@ What kind of training each routine is, independent of the equipment it uses.
 | `kettlebell` | Strength + conditioning | E4 | 3 | [Kettlebell](ROUTINE_KETTLEBELL.md) |
 | `home-hypertrophy` | Hypertrophy | E3 + E1 | 3 | [Home Hypertrophy](ROUTINE_HOME_HYPERTROPHY.md) |
 | `dumbbell-bench` | Strength | E5 | 3 | [Dumbbell + Bench](ROUTINE_DUMBBELL_BENCH.md) |
+| `bodyweight-conditioning` | Conditioning | E0 | 3 | [Bodyweight Conditioning](ROUTINE_BODYWEIGHT_CONDITIONING.md) |
+| `mobility` | Mobility | E0 | 2 | [Mobility](ROUTINE_MOBILITY.md) |
 
-Gaps at a glance: no mobility plan at any tier; conditioning only as volume (Kettlebell), no
-timed-interval plan; no documented brief for three of the four gym plans
+Gaps at a glance: no documented brief for three of the four gym plans
 (`ppl`, `upper-lower`, `full-body`).
 
 ## Constraints that shape every task
@@ -93,7 +94,7 @@ timed-interval plan; no documented brief for three of the four gym plans
 - **Catalog-limited picks.** Known holes: no plain air squat (E0), no dumbbell floor press (E3), no
   kettlebell deadlift or carry (E4).
 - **UI copy lives in `sheets.jsx`** inside `t()` calls, with an `es` translation, not in `starter.js`.
-- **Every plan declares a `goal`** in `PLANS` (`general`, `strength`, `hypertrophy`); the chooser
+- **Every plan declares a `goal`** in `PLANS` (`general`, `strength`, `hypertrophy`, `conditioning`); the chooser
   groups by it. A new goal (e.g. mobility) also needs a heading in `PLAN_GOALS` in `sheets.jsx`.
 - **Every plan needs a failing test first** (`starter.test.js`) and a routine doc in `docs/`.
 
@@ -108,8 +109,8 @@ Priority order is a proposal; confirm before starting each task. Status: `todo` 
 | 2 | Kettlebell | Conditioning + strength | E4 | Opens the conditioning goal; a matched pair, swing-based (catalog has no KB carry). | done |
 | 3 | Home Hypertrophy | Hypertrophy | E3 + E1 | Next step for Dumbbell/Pull-up Bar graduates; covers vertical pull. | done |
 | 4 | Dumbbell + Bench | Strength | E5 | Real horizontal press; closes the floor-press gap. | done |
-| 5 | Bodyweight Conditioning | Conditioning | E0 | Circuit format — first verify time-based progression fits. | todo |
-| 6 | Mobility | Mobility | E0 | Needs a stretching/mobility audit of the catalog first. | todo |
+| 5 | Bodyweight Conditioning | Conditioning | E0 | Circuit format — first verify time-based progression fits. | done |
+| 6 | Mobility | Mobility | E0 | Gentle full-body timed holds; manual 20 s → 30 s progression. | done |
 | 7 | Gym plan briefs | — | E6 | Write retroactive briefs/docs for `ppl`, `upper-lower`, `full-body`. | todo |
 
 ## Projections
@@ -143,8 +144,16 @@ Open questions the projections raise (resolve before the first one that needs it
 
 ## Supporting tasks
 
-- [ ] Verify the time-based progression rule can express holds and intervals (blocks #5, #6).
-- [ ] Audit catalog for mobility/stretching entries and their movement patterns (blocks #6).
+- [x] Verify the time-based progression rule can express holds and intervals (blocks #5, #6).
+  Verified 2026-09-26: a routine exercise can carry `mode: 'time'` + `sec` (and `inc`), judged by
+  the `time` policy (+5 s when every set is held, deload after 3 short sessions). The policy must
+  be set explicitly (`prog: 'time'`): time mode defaults to `off`. Circuits work through the
+  superset id `sg` on contiguous exercises (any group size), and `restSec` sets rest per exercise.
+  Not expressible: a session time cap, AMRAP, or EMOM. `build()` in `starter.js` only emits
+  `id/sets/reps/weight` today, so the first timed plan must extend it.
+- [x] Audit catalog for mobility/stretching entries and their movement patterns (blocks #6).
+  Completed 2026-10-10: selected eight `body weight` catalog entries covering ankles, hips,
+  hamstrings, glutes, trunk rotation, lats, rear delts, and upper back; see `ROUTINE_MOBILITY.md`.
 - [ ] Decide whether starter plans should set an explicit progression policy (A9), and which per goal.
 - [x] Decide how the plan chooser groups a growing list — by goal (general fitness, strength,
   hypertrophy), chosen with the user on 2026-09-26 over grouping by equipment.
@@ -160,3 +169,6 @@ Open questions the projections raise (resolve before the first one that needs it
 - 2026-09-26 — #3 Home Hypertrophy shipped (dumbbells + pull-up bar, no bench, trained base, Mon/Wed/Fri A/B/C).
 - 2026-09-26 — #4 Dumbbell + Bench shipped (flat bench, strength, Dumbbell graduates, Mon/Wed/Fri A/B/C).
 - 2026-09-26 — Plan chooser grouped by goal (General fitness / Strength / Hypertrophy).
+- 2026-09-26 — #5 Bodyweight Conditioning shipped (first timed plan: one 5-station circuit, 30 s × 3 rounds, `time` policy; new Conditioning section in the chooser).
+- 2026-10-10 — #6 Mobility shipped (one E0 full-body sequence Mon/Thu, 2 × 20 s timed holds,
+  automatic progression off; new Mobility chooser section).

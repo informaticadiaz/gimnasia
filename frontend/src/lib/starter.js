@@ -4,6 +4,8 @@
 //
 // A routine is [key, name, emoji, [[exerciseId, sets, reps], …]]. The key is what a plan's
 // schedule points at, so a weekday never depends on the position of a routine in the array.
+// An exercise may carry a fourth element — extra routine-exercise fields (timed work, circuits),
+// merged in as-is; see `circuit` below.
 // Names stay canonical English — they become ordinary user routines, which are not translated.
 import { uid } from './format.js'
 
@@ -102,9 +104,36 @@ const DUMBBELL_BENCH = [
   ['dbb-c', 'Dumbbell + Bench C', 'dumbbell', [['0410', 3, 8], ['1459', 3, 8], ['0352', 4, 6], ['0292', 4, 8], ['0294', 3, 10]]]
 ]
 
+// One routine run as a circuit: every exercise timed for `sec` seconds under the `time` policy
+// (time mode defaults to no progression, so it must be asked for), all sharing superset id `sg`
+// so the workout moves through them as one round, with `restSec` of rest after each round.
+const circuit = (sg, sets, sec, restSec, ids) =>
+  ids.map(id => [id, sets, null, { mode: 'time', sec, prog: 'time', sg, restSec }])
+
+// No equipment, conditioning (docs/ROUTINE_BODYWEIGHT_CONDITIONING.md): one five-exercise circuit
+// a day, 30 s on each, three rounds, 60 s between rounds. Jumps and burpees make it high-impact,
+// so it is meant for people who finished Bodyweight, not as a first plan.
+const BODYWEIGHT_CONDITIONING = [
+  ['bc-a', 'Conditioning A', 'figureRun', circuit('bc-a', 3, 30, 60, ['0514', '0662', '0630', '3561', '1160'])],
+  ['bc-b', 'Conditioning B', 'figureRun', circuit('bc-b', 3, 30, 60, ['3361', '1471', '3636', '2368', '0464'])],
+  ['bc-c', 'Conditioning C', 'figureRun', circuit('bc-c', 3, 30, 60, ['3223', '1311', '3360', '3655', '0501'])]
+]
+
+// No equipment, gentle general mobility (docs/ROUTINE_MOBILITY.md): one full-body sequence
+// repeated Monday and Thursday. Each position is held for 20 seconds over two rounds, with a
+// short reset between holds. Holds that name one side require the user to work both sides within
+// that hold; the routine model cannot represent independent left/right timers. Progression stays
+// manual (20 s to 30 s when controlled), so timed work explicitly opts out of auto progression.
+const timedHolds = ids =>
+  ids.map(id => [id, 2, null, { mode: 'time', sec: 20, restSec: 10, prog: 'off' }])
+
+const MOBILITY = [
+  ['mobility', 'Mobility', 'stretch', timedHolds(['1368', '1604', '1511', '1424', '3639', '1346', '0669', '1365'])]
+]
+
 // [weekday, routineKey] — weekday is a DAYN index, so 1 is Monday. Fixed weeks only: every
 // plan repeats the same seven days, which is all the weekly plan model can represent.
-// goal is what the chooser groups by: 'general', 'strength' or 'hypertrophy'.
+// goal is what the chooser groups by: 'general', 'strength', 'hypertrophy', 'conditioning' or 'mobility'.
 const PLANS = {
   ppl: { goal: 'hypertrophy', routines: PPL, schedule: [[1, 'push'], [3, 'pull'], [5, 'legs']] },
   'upper-lower': { goal: 'hypertrophy', routines: UPPER_LOWER, schedule: [[1, 'upper-a'], [2, 'lower-a'], [4, 'upper-b'], [5, 'lower-b']] },
@@ -117,11 +146,17 @@ const PLANS = {
   // Strength and conditioning; filed under strength, the half the chooser can name in one word.
   kettlebell: { goal: 'strength', routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] },
   'home-hypertrophy': { goal: 'hypertrophy', routines: HOME_HYPERTROPHY, schedule: [[1, 'hh-a'], [3, 'hh-b'], [5, 'hh-c']] },
-  'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] }
+  'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] },
+  'bodyweight-conditioning': { goal: 'conditioning', routines: BODYWEIGHT_CONDITIONING, schedule: [[1, 'bc-a'], [3, 'bc-b'], [5, 'bc-c']] },
+  mobility: { goal: 'mobility', routines: MOBILITY, schedule: [[1, 'mobility'], [4, 'mobility']] }
 }
 
 const build = routines =>
-  routines.map(([, name, emoji, list]) => ({ id: uid(), name, emoji, ex: list.map(([id, sets, reps]) => ({ id, sets, reps, weight: 0 })) }))
+  routines.map(([, name, emoji, list]) => ({
+    id: uid(), name, emoji,
+    // a timed exercise has no reps (null), so the key is left out rather than stored empty
+    ex: list.map(([id, sets, reps, extra]) => ({ id, sets, ...(reps != null && { reps }), weight: 0, ...extra }))
+  }))
 
 // Fresh routine objects (new ids) — [push, pull, legs]. The demo build seeds a history on
 // top of exactly these three, so this entry point keeps its shape.

@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import { EXIDX } from './exercises.js'
 import { buildStarterPlan, starterPlanDays, starterPlanOptions, starterRoutines } from './starter.js'
+import { policyFor } from './progression.js'
+import { supersetUnits } from './history.js'
+import { buildSessionEntries } from './session-start.js'
 
 // The approved prescription, written out again rather than imported: a test that reads the
 // same table as the code would pass no matter what that table said. [weekday, name, sets].
+// A timed exercise's third value is its duration, written '30s' so it can't pass for reps.
 const APPROVED = {
   ppl: [
     [1, 'Push Day', [['0025', 4, 8], ['0047', 3, 10], ['0426', 3, 10], ['0334', 3, 12], ['0241', 3, 12], ['0251', 3, 10]]],
@@ -60,12 +64,17 @@ const APPROVED = {
     [3, 'Dumbbell + Bench B', [['0431', 3, 8], ['0300', 4, 6], ['0405', 4, 6], ['0292', 4, 8], ['0375', 3, 10]]],
     [5, 'Dumbbell + Bench C', [['0410', 3, 8], ['1459', 3, 8], ['0352', 4, 6], ['0292', 4, 8], ['0294', 3, 10]]],
   ],
+  'bodyweight-conditioning': [
+    [1, 'Conditioning A', [['0514', 3, '30s'], ['0662', 3, '30s'], ['0630', 3, '30s'], ['3561', 3, '30s'], ['1160', 3, '30s']]],
+    [3, 'Conditioning B', [['3361', 3, '30s'], ['1471', 3, '30s'], ['3636', 3, '30s'], ['2368', 3, '30s'], ['0464', 3, '30s']]],
+    [5, 'Conditioning C', [['3223', 3, '30s'], ['1311', 3, '30s'], ['3360', 3, '30s'], ['3655', 3, '30s'], ['0501', 3, '30s']]],
+  ],
 }
 
-const shape = r => r.ex.map(e => [e.id, e.sets, e.reps])
+const shape = r => r.ex.map(e => [e.id, e.sets, e.mode === 'time' ? `${e.sec}s` : e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the eleven plans, each with its goal and the day count read off the schedule', () => {
+  it('offers exactly the thirteen plans, each with its goal and the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
       { id: 'ppl', days: 3, goal: 'hypertrophy' }, { id: 'upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'full-body', days: 3, goal: 'general' }, { id: '5x5', days: 3, goal: 'strength' },
@@ -73,6 +82,8 @@ describe('starter plan catalog', () => {
       { id: 'pull-up-bar', days: 3, goal: 'general' }, { id: 'resistance-band', days: 3, goal: 'general' },
       { id: 'kettlebell', days: 3, goal: 'strength' }, { id: 'home-hypertrophy', days: 3, goal: 'hypertrophy' },
       { id: 'dumbbell-bench', days: 3, goal: 'strength' },
+      { id: 'bodyweight-conditioning', days: 3, goal: 'conditioning' },
+      { id: 'mobility', days: 2, goal: 'mobility' },
     ])
     for (const { id, days } of starterPlanOptions()) expect(starterPlanDays(id)).toHaveLength(days)
   })
@@ -107,7 +118,7 @@ describe.each(Object.keys(APPROVED))('%s', planId => {
       for (const e of r.ex) {
         expect(EXIDX[e.id], e.id).toBeTruthy()
         expect(e.sets).toBeGreaterThan(0)
-        expect(e.reps).toBeGreaterThan(0)
+        expect(e.mode === 'time' ? e.sec : e.reps, e.id).toBeGreaterThan(0)
         expect(e.weight).toBe(0)
       }
     }
@@ -123,6 +134,78 @@ describe.each(Object.keys(APPROVED))('%s', planId => {
     // and the static definition survives a caller mutating what it got back
     first.routines[0].ex[0].sets = 99
     expect(buildStarterPlan(planId).routines[0].ex[0].sets).toBe(approved[0][2][0][1])
+  })
+})
+
+describe('bodyweight-conditioning circuits', () => {
+  const { routines } = buildStarterPlan('bodyweight-conditioning')
+
+  it('runs every routine as one circuit: a single superset unit spanning all its exercises', () => {
+    for (const r of routines) expect(supersetUnits(r.ex), r.name).toEqual([r.ex.map((_, i) => i)])
+    // and the circuits of different days never share a group id
+    expect(new Set(routines.map(r => r.ex[0].sg)).size).toBe(routines.length)
+  })
+
+  it('times every exercise, rests 60 s after a round, and adds time under the time policy', () => {
+    for (const r of routines) {
+      for (const e of r.ex) {
+        expect(e.mode, e.id).toBe('time')
+        expect(e.restSec, e.id).toBe(60)
+        // time mode defaults to no progression; the plan has to ask for it
+        expect(policyFor(e, r, 'time'), e.id).toBe('time')
+      }
+    }
+  })
+
+  it('starts a workout as a timed circuit, not as rep sets', () => {
+    const r = routines[0]
+    const entries = buildSessionEntries({ unit: 'kg', workouts: [], routines: [r] }, r)
+    expect(supersetUnits(entries)).toEqual([entries.map((_, i) => i)])
+    for (const e of entries) {
+      expect(e.plan.policy, e.id).toBe('time')
+      expect(e.target.restSec, e.id).toBe(60)
+      expect(e.sets.map(set => set.sec), e.id).toEqual([30, 30, 30])
+    }
+  })
+
+  it('leaves the rep-based plans free of timed or circuit fields', () => {
+    for (const e of buildStarterPlan('bodyweight').routines.flatMap(r => r.ex)) {
+      expect(Object.keys(e).sort()).toEqual(['id', 'reps', 'sets', 'weight'])
+    }
+  })
+})
+
+describe('mobility timed holds', () => {
+  const plan = buildStarterPlan('mobility')
+  const { routines } = plan
+
+  it('repeats one full-body routine on Monday and Thursday', () => {
+    expect(routines.map(r => [r.name, shape(r)])).toEqual([[
+      'Mobility',
+      [['1368', 2, '20s'], ['1604', 2, '20s'], ['1511', 2, '20s'], ['1424', 2, '20s'], ['3639', 2, '20s'], ['1346', 2, '20s'], ['0669', 2, '20s'], ['1365', 2, '20s']]
+    ]])
+    expect(plan.schedule.map(({ day, routineId }) => [day, routines.find(r => r.id === routineId)?.name]))
+      .toEqual([[1, 'Mobility'], [4, 'Mobility']])
+  })
+
+  it('uses 20-second timed holds for two rounds, with manual progression disabled', () => {
+    for (const r of routines) {
+      for (const e of r.ex) {
+        expect(e.mode, e.id).toBe('time')
+        expect(e.sec, e.id).toBe(20)
+        expect(e.prog, e.id).toBe('off')
+        expect(e.reps, e.id).toBeUndefined()
+      }
+    }
+  })
+
+  it('starts each mobility exercise as two 20-second holds without automatic progression', () => {
+    const r = routines[0]
+    const entries = buildSessionEntries({ unit: 'kg', workouts: [], routines: [r] }, r)
+    for (const e of entries) {
+      expect(e.plan.policy, e.id).toBe('off')
+      expect(e.sets.map(set => set.sec), e.id).toEqual([20, 20])
+    }
   })
 })
 
