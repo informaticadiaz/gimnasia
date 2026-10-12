@@ -146,6 +146,18 @@ const INTERMEDIATE_STRENGTH = [
   ['is-lower-b', 'Strength Lower B', 'legs', [['0032', 3, 5], ['0042', 4, 5], ['0085', 3, 6], ['1372', 3, 10], ['0084', 3, 8]], 'linear']
 ]
 
+// Full gym, advanced hypertrophy (docs/ROUTINE_BODY_PART_SPLIT.md). Five long sessions give
+// chest, back, legs, shoulders, and arms separate training days. Every routine deliberately uses
+// double progression: hold the load while reps move from the stated minimum to the upper target,
+// then add the app's catalog-derived load step and return to the minimum.
+const BODY_PART_SPLIT = [
+  ['bps-chest', 'Chest', 'barbell', [['0025', 4, 12, { repsMin: 8 }], ['0047', 4, 12, { repsMin: 8 }], ['0251', 3, 15, { repsMin: 10 }], ['0179', 3, 15, { repsMin: 10 }], ['2144', 3, 15, { repsMin: 10 }]], 'double'],
+  ['bps-back', 'Back', 'pullup', [['2330', 4, 12, { repsMin: 8 }], ['0027', 4, 12, { repsMin: 8 }], ['1323', 3, 15, { repsMin: 10 }], ['0581', 3, 15, { repsMin: 10 }], ['0606', 3, 15, { repsMin: 10 }]], 'double'],
+  ['bps-legs', 'Legs', 'legs', [['0043', 4, 12, { repsMin: 8 }], ['0085', 4, 12, { repsMin: 8 }], ['0739', 3, 15, { repsMin: 10 }], ['0585', 3, 15, { repsMin: 10 }], ['0586', 3, 15, { repsMin: 10 }], ['0605', 4, 20, { repsMin: 12 }]], 'double'],
+  ['bps-shoulders', 'Shoulders', 'dumbbell', [['0426', 4, 12, { repsMin: 8 }], ['0334', 4, 15, { repsMin: 10 }], ['0333', 3, 15, { repsMin: 10 }], ['0603', 3, 15, { repsMin: 10 }], ['0202', 3, 15, { repsMin: 10 }]], 'double'],
+  ['bps-arms', 'Arms', 'dumbbell', [['0031', 4, 15, { repsMin: 10 }], ['0313', 4, 15, { repsMin: 10 }], ['0241', 4, 15, { repsMin: 10 }], ['0061', 4, 15, { repsMin: 10 }], ['0251', 3, 15, { repsMin: 10 }]], 'double']
+]
+
 // One routine run as a circuit: every exercise timed for `sec` seconds under the `time` policy
 // (time mode defaults to no progression, so it must be asked for), all sharing superset id `sg`
 // so the workout moves through them as one round, with `restSec` of rest after each round.
@@ -193,6 +205,7 @@ const PLANS = {
   'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] },
   'gym-machines': { goal: 'general', routines: GYM_MACHINES, schedule: [[1, 'gm-a'], [3, 'gm-b'], [5, 'gm-c']] },
   'intermediate-strength': { goal: 'strength', routines: INTERMEDIATE_STRENGTH, schedule: [[1, 'is-upper-a'], [2, 'is-lower-a'], [4, 'is-upper-b'], [5, 'is-lower-b']] },
+  'body-part-split': { goal: 'hypertrophy', routines: BODY_PART_SPLIT, schedule: [[1, 'bps-chest'], [2, 'bps-back'], [3, 'bps-legs'], [4, 'bps-shoulders'], [5, 'bps-arms']] },
   'bodyweight-conditioning': { goal: 'conditioning', routines: BODYWEIGHT_CONDITIONING, schedule: [[1, 'bc-a'], [3, 'bc-b'], [5, 'bc-c']] },
   mobility: { goal: 'mobility', routines: MOBILITY, schedule: [[1, 'mobility'], [4, 'mobility']] }
 }

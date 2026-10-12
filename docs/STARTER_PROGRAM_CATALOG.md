@@ -23,7 +23,7 @@ The initial catalog covers these product categories:
 | Category | Current published coverage | Evidence |
 | --- | --- | --- |
 | Strength | `5x5`, `kettlebell`, `dumbbell-bench`, `intermediate-strength` | Their `goal` is `strength` in `starter.js`. |
-| Hypertrophy | `ppl`, `upper-lower`, `home-hypertrophy` | Their `goal` is `hypertrophy` in `starter.js`. |
+| Hypertrophy | `ppl`, `upper-lower`, `home-hypertrophy`, `home-upper-lower`, `body-part-split` | Their `goal` is `hypertrophy` in `starter.js`. |
 | Conditioning | `bodyweight-conditioning` | Its `goal` is `conditioning` in `starter.js`. |
 | Mobility | `mobility` | Its `goal` is `mobility` in `starter.js`. |
 | General fitness | `full-body`, `bodyweight`, `express-bodyweight`, `dumbbell`, `pull-up-bar`, `resistance-band`, `gym-machines` | Their `goal` is `general` in `starter.js`. |
@@ -53,6 +53,7 @@ Routine-specific documents record the published sessions and retrospective evide
 | `dumbbell-bench` | Strength | 3 | [Dumbbell + Bench](ROUTINE_DUMBBELL_BENCH.md) |
 | `gym-machines` | General fitness | 3 | [Gym Machines Starter](ROUTINE_GYM_MACHINES.md) |
 | `intermediate-strength` | Strength | 4 | [Intermediate Strength](ROUTINE_INTERMEDIATE_STRENGTH.md) |
+| `body-part-split` | Hypertrophy | 5 | [Body-part Split](ROUTINE_BODY_PART_SPLIT.md) |
 | `bodyweight-conditioning` | Conditioning | 3 | [Bodyweight Conditioning](ROUTINE_BODYWEIGHT_CONDITIONING.md) |
 | `mobility` | Mobility | 2 | [Mobility](ROUTINE_MOBILITY.md) |
 

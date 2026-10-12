@@ -86,6 +86,13 @@ const APPROVED = {
     [4, 'Strength Upper B', [['0047', 4, 5], ['0027', 4, 6], ['0091', 3, 6], ['0031', 3, 8], ['0061', 3, 8]]],
     [5, 'Strength Lower B', [['0032', 3, 5], ['0042', 4, 5], ['0085', 3, 6], ['1372', 3, 10], ['0084', 3, 8]]],
   ],
+  'body-part-split': [
+    [1, 'Chest', [['0025', 4, 12], ['0047', 4, 12], ['0251', 3, 15], ['0179', 3, 15], ['2144', 3, 15]]],
+    [2, 'Back', [['2330', 4, 12], ['0027', 4, 12], ['1323', 3, 15], ['0581', 3, 15], ['0606', 3, 15]]],
+    [3, 'Legs', [['0043', 4, 12], ['0085', 4, 12], ['0739', 3, 15], ['0585', 3, 15], ['0586', 3, 15], ['0605', 4, 20]]],
+    [4, 'Shoulders', [['0426', 4, 12], ['0334', 4, 15], ['0333', 3, 15], ['0603', 3, 15], ['0202', 3, 15]]],
+    [5, 'Arms', [['0031', 4, 15], ['0313', 4, 15], ['0241', 4, 15], ['0061', 4, 15], ['0251', 3, 15]]],
+  ],
   'bodyweight-conditioning': [
     [1, 'Conditioning A', [['0514', 3, '30s'], ['0662', 3, '30s'], ['0630', 3, '30s'], ['3561', 3, '30s'], ['1160', 3, '30s']]],
     [3, 'Conditioning B', [['3361', 3, '30s'], ['1471', 3, '30s'], ['3636', 3, '30s'], ['2368', 3, '30s'], ['0464', 3, '30s']]],
@@ -96,7 +103,7 @@ const APPROVED = {
 const shape = r => r.ex.map(e => [e.id, e.sets, e.mode === 'time' ? `${e.sec}s` : e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the seventeen plans, each with its goal and the day count read off the schedule', () => {
+  it('offers exactly the eighteen plans, each with its goal and the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
       { id: 'ppl', days: 3, goal: 'hypertrophy' }, { id: 'upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'full-body', days: 3, goal: 'general' }, { id: '5x5', days: 3, goal: 'strength' },
@@ -107,6 +114,7 @@ describe('starter plan catalog', () => {
       { id: 'dumbbell-bench', days: 3, goal: 'strength' },
       { id: 'gym-machines', days: 3, goal: 'general' },
       { id: 'intermediate-strength', days: 4, goal: 'strength' },
+      { id: 'body-part-split', days: 5, goal: 'hypertrophy' },
       { id: 'bodyweight-conditioning', days: 3, goal: 'conditioning' },
       { id: 'mobility', days: 2, goal: 'mobility' },
     ])
@@ -185,6 +193,20 @@ describe('intermediate strength equipment and progression boundary', () => {
       for (const exercise of routine.ex) {
         expect(EXIDX[exercise.id].eq, exercise.id).toBe('barbell')
         expect(policyFor(exercise, routine, 'reps'), exercise.id).toBe('linear')
+      }
+    }
+  })
+})
+
+describe('body-part split equipment and progression boundary', () => {
+  it('uses only full-gym catalog entries and explicitly applies double progression with rep ranges', () => {
+    for (const routine of buildStarterPlan('body-part-split').routines) {
+      expect(routine.prog, routine.name).toBe('double')
+      for (const exercise of routine.ex) {
+        expect(['barbell', 'cable', 'dumbbell', 'body weight', 'sled machine', 'leverage machine'], exercise.id).toContain(EXIDX[exercise.id].eq)
+        expect(exercise.repsMin, exercise.id).toBeGreaterThan(0)
+        expect(exercise.repsMin, exercise.id).toBeLessThan(exercise.reps)
+        expect(policyFor(exercise, routine, 'reps'), exercise.id).toBe('double')
       }
     }
   })

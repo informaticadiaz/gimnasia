@@ -42,6 +42,7 @@ uses its program ids and links only to track documentation and future prioritiza
 | `bodyweight-conditioning` | Conditioning | [Bodyweight Conditioning](ROUTINE_BODYWEIGHT_CONDITIONING.md) |
 | `express-bodyweight` | General fitness | [Express Bodyweight](ROUTINE_EXPRESS_BODYWEIGHT.md) |
 | `intermediate-strength` | Strength | [Intermediate Strength](ROUTINE_INTERMEDIATE_STRENGTH.md) |
+| `body-part-split` | Hypertrophy | [Body-part Split](ROUTINE_BODY_PART_SPLIT.md) |
 | `mobility` | Mobility | [Mobility](ROUTINE_MOBILITY.md) |
 
 The remaining published programs are listed in the catalog. Their omission from this short table
@@ -93,7 +94,6 @@ product approval.
 
 | ID | Candidate | Goal | Equip. | Level | Days | Length | Split | Setting / audience |
 | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
-| P5 | Body-part Split | Hypertrophy | E6 | Advanced | 5 | Long | Body-part | Gym |
 | P6 | Travel Kit | General fitness | E0 + E2 | Beginner | 3 | Short | Full body | Travel |
 | P7 | Active Aging | General fitness | E0 + E2 | Beginner | 2 | Short | Full body | Home / older adult |
 | P8 | Comeback | General fitness | E3 | Returning | 2 | Standard | Full body | Home or gym / returning |
@@ -104,8 +104,6 @@ Open questions the projections raise (resolve before the first one that needs it
 
 - **Add-on plans (P10).** A plan that complements another one would share weekdays with it; the
   plan model today assigns whole days. Needs a design decision before P10.
-- **Explicit progression (P5).** Intermediate and advanced plans only make sense with a chosen
-  progression rule — P4 uses explicit routine-level `linear` progression.
 - **Audience safety wording (P7, P8).** Needs a reviewed boundary text shared by every
   special-audience plan, not written per plan.
 - **Chooser overload.** Ten more plans on top of nine makes the grouping task below mandatory.
@@ -122,7 +120,7 @@ Open questions the projections raise (resolve before the first one that needs it
 - [x] Audit catalog for mobility/stretching entries and their movement patterns (blocks #6).
   Completed 2026-10-10: selected eight `body weight` catalog entries covering ankles, hips,
   hamstrings, glutes, trunk rotation, lats, rear delts, and upper back; see `ROUTINE_MOBILITY.md`.
-- [ ] Decide whether starter plans should set an explicit progression policy, and which per category.
+- [x] Decide progression for advanced roadmap plans: P4 uses routine-level `linear`; P5 uses routine-level `double` with explicit rep ranges.
 - [x] Decide how the plan chooser groups a growing list — by goal (general fitness, strength,
   hypertrophy), chosen with the user on 2026-09-26 over grouping by equipment.
 - [ ] Track catalog gaps (air squat, dumbbell floor press, a tube-band squat, kettlebell deadlift,
@@ -145,3 +143,4 @@ Open questions the projections raise (resolve before the first one that needs it
 - 2026-10-12 — P2 Home Upper/Lower shipped: an intermediate E3 + E1 hypertrophy plan with four home sessions (upper/lower Monday/Tuesday/Thursday/Friday).
 - 2026-10-12 — P3 Gym Machines Starter shipped: a beginner E6 general-fitness plan with three machine and cable full-body sessions (Monday/Wednesday/Friday).
 - 2026-10-12 — P4 Intermediate Strength shipped: an intermediate E6 barbell strength plan with four long upper/lower sessions (Monday/Tuesday/Thursday/Friday) and explicit routine-level `linear` progression.
+- 2026-10-12 — P5 Body-part Split shipped: an advanced E6 hypertrophy plan with five long gym sessions (chest, back, legs, shoulders, arms) and explicit routine-level `double` progression.

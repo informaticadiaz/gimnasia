@@ -106,6 +106,7 @@ const PLAN_COPY = {
   'dumbbell-bench': () => ({ name: t('Dumbbell + Bench'), about: t('Dumbbells and a flat bench for strength, three sessions a week.') }),
   'gym-machines': () => ({ name: t('Gym Machines Starter'), where: t('At the gym'), about: t('Machines and cables for three beginner full-body sessions a week.') }),
   'intermediate-strength': () => ({ name: t('Intermediate Strength'), where: t('At the gym'), about: t('Barbell upper and lower sessions twice a week for intermediate lifters.') }),
+  'body-part-split': () => ({ name: t('Body-part Split'), where: t('At the gym'), about: t('Five long gym sessions, one for each major body part.') }),
   'bodyweight-conditioning': () => ({ name: t('Bodyweight Conditioning'), about: t('No equipment, one timed circuit a session, three sessions a week.') }),
   mobility: () => ({ name: t('Mobility'), about: t('No equipment, gentle full-body holds twice a week.') })
 }
