@@ -43,6 +43,16 @@ const BODYWEIGHT = [
   ['bw-c', 'Bodyweight C', 'figureRun', [['2368', 3, 10], ['1311', 3, 8], ['3166', 3, 10], ['0464', 3, 10], ['0630', 3, 20]]]
 ]
 
+// No equipment, beginner, and deliberately short (docs/ROUTINE_EXPRESS_BODYWEIGHT.md): three
+// two-set, four-movement sessions a week. Each session covers the catalog's only practical
+// no-equipment squat pattern plus accessible push, pull, and hip-extension patterns. This is a
+// lower-volume on-ramp than BODYWEIGHT, not its replacement.
+const EXPRESS_BODYWEIGHT = [
+  ['ebw-a', 'Express Bodyweight A', 'stretch', [['2368', 2, 8], ['0659', 2, 8], ['3166', 2, 10], ['3013', 2, 10]]],
+  ['ebw-b', 'Express Bodyweight B', 'stretch', [['2368', 2, 8], ['0659', 2, 8], ['3166', 2, 10], ['3013', 2, 10]]],
+  ['ebw-c', 'Express Bodyweight C', 'stretch', [['2368', 2, 8], ['0659', 2, 8], ['3166', 2, 10], ['3013', 2, 10]]]
+]
+
 // Dumbbells only, no bench (see docs/ROUTINE_DUMBBELL_NO_BENCH.md) — squat, hinge and press
 // repeat unchanged on both days (the highest-skill lifts, worth the repetition at only 2
 // sessions/week); only the row and the push vary, for some freshness without adding a third
@@ -94,6 +104,18 @@ const HOME_HYPERTROPHY = [
   ['hh-c', 'Home Hypertrophy C', 'dumbbell', [['1760', 3, 12], ['0651', 3, 6], ['1311', 3, 10], ['1757', 3, 10], ['0294', 3, 12], ['0333', 3, 12]]]
 ]
 
+// Dumbbells plus a pull-up bar, no bench (docs/ROUTINE_HOME_UPPER_LOWER.md). This four-day
+// intermediate split gives the upper body and legs two focused sessions each without claiming a
+// gym-only movement. Deep/wide push-ups cover the unavailable dumbbell floor press; pull-ups and
+// chin-ups supply the vertical pull. Lower days use only dumbbells, the bar for hanging core work,
+// and the catalog's dumbbell standing calf raise — never the leverage-machine calf entries.
+const HOME_UPPER_LOWER = [
+  ['hul-upper-a', 'Home Upper A', 'dumbbell', [['1274', 3, 10], ['0652', 3, 6], ['0426', 3, 10], ['0292', 3, 10], ['0334', 3, 12], ['0430', 3, 12]]],
+  ['hul-lower-a', 'Home Lower A', 'legs', [['1760', 3, 10], ['1459', 3, 10], ['0336', 3, 10], ['0417', 3, 12], ['0472', 3, 10]]],
+  ['hul-upper-b', 'Home Upper B', 'dumbbell', [['1311', 3, 10], ['1326', 3, 6], ['0292', 3, 10], ['0426', 3, 10], ['0294', 3, 12], ['0333', 3, 12]]],
+  ['hul-lower-b', 'Home Lower B', 'legs', [['0410', 3, 10], ['1757', 3, 10], ['0336', 3, 10], ['0417', 3, 12], ['0472', 3, 10]]]
+]
+
 // A pair of dumbbells plus a flat bench (docs/ROUTINE_DUMBBELL_BENCH.md), for strength — the bench
 // closes the Dumbbell plan's missing loaded horizontal press. It is flat, not adjustable, so the
 // only row is `0292` one-arm row on all three days (incline chest-supported rows need an
@@ -140,12 +162,14 @@ const PLANS = {
   'full-body': { goal: 'general', routines: FULL_BODY, schedule: [[1, 'fb-a'], [3, 'fb-b'], [5, 'fb-c']] },
   '5x5': { goal: 'strength', routines: FIVE_BY_FIVE, schedule: [[1, '5x5-a'], [3, '5x5-b'], [5, '5x5-c']] },
   bodyweight: { goal: 'general', routines: BODYWEIGHT, schedule: [[1, 'bw-a'], [3, 'bw-b'], [5, 'bw-c']] },
+  'express-bodyweight': { goal: 'general', routines: EXPRESS_BODYWEIGHT, schedule: [[1, 'ebw-a'], [3, 'ebw-b'], [5, 'ebw-c']] },
   dumbbell: { goal: 'general', routines: DUMBBELL, schedule: [[1, 'db-a'], [4, 'db-b']] },
   'pull-up-bar': { goal: 'general', routines: PULL_UP_BAR, schedule: [[1, 'pb-a'], [3, 'pb-b'], [5, 'pb-c']] },
   'resistance-band': { goal: 'general', routines: RESISTANCE_BAND, schedule: [[1, 'rb-a'], [3, 'rb-b'], [5, 'rb-c']] },
   // Strength and conditioning; filed under strength, the half the chooser can name in one word.
   kettlebell: { goal: 'strength', routines: KETTLEBELL, schedule: [[1, 'kb-a'], [3, 'kb-b'], [5, 'kb-c']] },
   'home-hypertrophy': { goal: 'hypertrophy', routines: HOME_HYPERTROPHY, schedule: [[1, 'hh-a'], [3, 'hh-b'], [5, 'hh-c']] },
+  'home-upper-lower': { goal: 'hypertrophy', routines: HOME_UPPER_LOWER, schedule: [[1, 'hul-upper-a'], [2, 'hul-lower-a'], [4, 'hul-upper-b'], [5, 'hul-lower-b']] },
   'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] },
   'bodyweight-conditioning': { goal: 'conditioning', routines: BODYWEIGHT_CONDITIONING, schedule: [[1, 'bc-a'], [3, 'bc-b'], [5, 'bc-c']] },
   mobility: { goal: 'mobility', routines: MOBILITY, schedule: [[1, 'mobility'], [4, 'mobility']] }

@@ -35,6 +35,11 @@ const APPROVED = {
     [3, 'Bodyweight B', [['2368', 3, 10], ['0283', 3, 8], ['0497', 3, 8], ['3561', 3, 10], ['0003', 3, 15]]],
     [5, 'Bodyweight C', [['2368', 3, 10], ['1311', 3, 8], ['3166', 3, 10], ['0464', 3, 10], ['0630', 3, 20]]],
   ],
+  'express-bodyweight': [
+    [1, 'Express Bodyweight A', [['2368', 2, 8], ['0659', 2, 8], ['3166', 2, 10], ['3013', 2, 10]]],
+    [3, 'Express Bodyweight B', [['2368', 2, 8], ['0659', 2, 8], ['3166', 2, 10], ['3013', 2, 10]]],
+    [5, 'Express Bodyweight C', [['2368', 2, 8], ['0659', 2, 8], ['3166', 2, 10], ['3013', 2, 10]]],
+  ],
   dumbbell: [
     [1, 'Dumbbell A', [['1760', 3, 10], ['1459', 3, 10], ['0293', 3, 10], ['0426', 3, 10], ['0662', 3, 8]]],
     [4, 'Dumbbell B', [['1760', 3, 10], ['1459', 3, 10], ['0292', 3, 10], ['0426', 3, 10], ['1311', 3, 8]]],
@@ -59,6 +64,12 @@ const APPROVED = {
     [3, 'Home Hypertrophy B', [['0410', 3, 10], ['0292', 3, 10], ['0426', 3, 10], ['1326', 3, 6], ['0430', 3, 12], ['0472', 3, 10]]],
     [5, 'Home Hypertrophy C', [['1760', 3, 12], ['0651', 3, 6], ['1311', 3, 10], ['1757', 3, 10], ['0294', 3, 12], ['0333', 3, 12]]],
   ],
+  'home-upper-lower': [
+    [1, 'Home Upper A', [['1274', 3, 10], ['0652', 3, 6], ['0426', 3, 10], ['0292', 3, 10], ['0334', 3, 12], ['0430', 3, 12]]],
+    [2, 'Home Lower A', [['1760', 3, 10], ['1459', 3, 10], ['0336', 3, 10], ['0417', 3, 12], ['0472', 3, 10]]],
+    [4, 'Home Upper B', [['1311', 3, 10], ['1326', 3, 6], ['0292', 3, 10], ['0426', 3, 10], ['0294', 3, 12], ['0333', 3, 12]]],
+    [5, 'Home Lower B', [['0410', 3, 10], ['1757', 3, 10], ['0336', 3, 10], ['0417', 3, 12], ['0472', 3, 10]]],
+  ],
   'dumbbell-bench': [
     [1, 'Dumbbell + Bench A', [['1760', 4, 8], ['1459', 3, 8], ['0289', 4, 6], ['0292', 4, 8], ['0351', 3, 10]]],
     [3, 'Dumbbell + Bench B', [['0431', 3, 8], ['0300', 4, 6], ['0405', 4, 6], ['0292', 4, 8], ['0375', 3, 10]]],
@@ -74,13 +85,14 @@ const APPROVED = {
 const shape = r => r.ex.map(e => [e.id, e.sets, e.mode === 'time' ? `${e.sec}s` : e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the thirteen plans, each with its goal and the day count read off the schedule', () => {
+  it('offers exactly the fifteen plans, each with its goal and the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
       { id: 'ppl', days: 3, goal: 'hypertrophy' }, { id: 'upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'full-body', days: 3, goal: 'general' }, { id: '5x5', days: 3, goal: 'strength' },
-      { id: 'bodyweight', days: 3, goal: 'general' }, { id: 'dumbbell', days: 2, goal: 'general' },
+      { id: 'bodyweight', days: 3, goal: 'general' }, { id: 'express-bodyweight', days: 3, goal: 'general' }, { id: 'dumbbell', days: 2, goal: 'general' },
       { id: 'pull-up-bar', days: 3, goal: 'general' }, { id: 'resistance-band', days: 3, goal: 'general' },
       { id: 'kettlebell', days: 3, goal: 'strength' }, { id: 'home-hypertrophy', days: 3, goal: 'hypertrophy' },
+      { id: 'home-upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'dumbbell-bench', days: 3, goal: 'strength' },
       { id: 'bodyweight-conditioning', days: 3, goal: 'conditioning' },
       { id: 'mobility', days: 2, goal: 'mobility' },
@@ -134,6 +146,14 @@ describe.each(Object.keys(APPROVED))('%s', planId => {
     // and the static definition survives a caller mutating what it got back
     first.routines[0].ex[0].sets = 99
     expect(buildStarterPlan(planId).routines[0].ex[0].sets).toBe(approved[0][2][0][1])
+  })
+})
+
+describe('home upper/lower equipment boundary', () => {
+  it('uses only dumbbells or bodyweight catalog entries, never gym machines', () => {
+    for (const exercise of buildStarterPlan('home-upper-lower').routines.flatMap(r => r.ex)) {
+      expect(['dumbbell', 'body weight'], exercise.id).toContain(EXIDX[exercise.id].eq)
+    }
   })
 })
 

@@ -55,9 +55,9 @@ describe('starter plan chooser', () => {
     // Each heading followed by the plan names under it, in the order they appear on screen.
     const groups = [...host.querySelectorAll('h4.sec')].map(h => [h.textContent, [...h.nextElementSibling.querySelectorAll('.item .tt')].map(el => el.textContent)])
     expect(groups).toEqual([
-      ['General fitness', ['Full Body', 'Bodyweight', 'Dumbbell', 'Pull-up Bar', 'Resistance Band']],
+      ['General fitness', ['Full Body', 'Bodyweight', 'Express Bodyweight', 'Dumbbell', 'Pull-up Bar', 'Resistance Band']],
       ['Strength', ['5×5', 'Kettlebell', 'Dumbbell + Bench']],
-      ['Hypertrophy', ['Push / Pull / Legs', 'Upper / Lower', 'Home Hypertrophy']],
+      ['Hypertrophy', ['Push / Pull / Legs', 'Upper / Lower', 'Home Hypertrophy', 'Home Upper / Lower']],
       ['Conditioning', ['Bodyweight Conditioning']],
       ['Mobility', ['Mobility']],
     ])
@@ -69,7 +69,7 @@ describe('starter plan chooser', () => {
     const host = renderTop()
     const atGym = name => rowFor(host, name).querySelector('.ss').textContent.startsWith('At the gym · ')
     for (const name of ['Push / Pull / Legs', 'Upper / Lower', 'Full Body', '5×5']) expect(atGym(name), name).toBe(true)
-    for (const name of ['Bodyweight', 'Dumbbell', 'Kettlebell', 'Home Hypertrophy', 'Dumbbell + Bench']) expect(atGym(name), name).toBe(false)
+    for (const name of ['Bodyweight', 'Express Bodyweight', 'Dumbbell', 'Kettlebell', 'Home Hypertrophy', 'Home Upper / Lower', 'Dumbbell + Bench']) expect(atGym(name), name).toBe(false)
   })
 
   it('loads straight away when the plan’s weekdays are free, without asking', () => {
