@@ -26,7 +26,7 @@ The initial catalog covers these product categories:
 | Hypertrophy | `ppl`, `upper-lower`, `home-hypertrophy` | Their `goal` is `hypertrophy` in `starter.js`. |
 | Conditioning | `bodyweight-conditioning` | Its `goal` is `conditioning` in `starter.js`. |
 | Mobility | `mobility` | Its `goal` is `mobility` in `starter.js`. |
-| General fitness | `full-body`, `bodyweight`, `express-bodyweight`, `dumbbell`, `pull-up-bar`, `resistance-band` | Their `goal` is `general` in `starter.js`. |
+| General fitness | `full-body`, `bodyweight`, `express-bodyweight`, `dumbbell`, `pull-up-bar`, `resistance-band`, `gym-machines` | Their `goal` is `general` in `starter.js`. |
 
 These rows establish category coverage only. They do not claim that any program is audited,
 clinically appropriate, or suitable for every person.
@@ -51,6 +51,7 @@ Routine-specific documents record the published sessions and retrospective evide
 | `home-hypertrophy` | Hypertrophy | 3 | [Home Hypertrophy](ROUTINE_HOME_HYPERTROPHY.md) |
 | `home-upper-lower` | Hypertrophy | 4 | [Home Upper / Lower](ROUTINE_HOME_UPPER_LOWER.md) |
 | `dumbbell-bench` | Strength | 3 | [Dumbbell + Bench](ROUTINE_DUMBBELL_BENCH.md) |
+| `gym-machines` | General fitness | 3 | [Gym Machines Starter](ROUTINE_GYM_MACHINES.md) |
 | `bodyweight-conditioning` | Conditioning | 3 | [Bodyweight Conditioning](ROUTINE_BODYWEIGHT_CONDITIONING.md) |
 | `mobility` | Mobility | 2 | [Mobility](ROUTINE_MOBILITY.md) |
 

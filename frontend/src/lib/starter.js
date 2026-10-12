@@ -126,6 +126,15 @@ const DUMBBELL_BENCH = [
   ['dbb-c', 'Dumbbell + Bench C', 'dumbbell', [['0410', 3, 8], ['1459', 3, 8], ['0352', 4, 6], ['0292', 4, 8], ['0294', 3, 10]]]
 ]
 
+// Machines and cable stations only (docs/ROUTINE_GYM_MACHINES.md). Three standard-length,
+// full-body sessions give beginners stable, guided movement paths while repeating the leg press
+// and vertical pull. Starting weights stay at zero so each person chooses a safe first load.
+const GYM_MACHINES = [
+  ['gm-a', 'Gym Machines A', 'figureStrength', [['0739', 3, 10], ['0577', 3, 10], ['2330', 3, 10], ['0861', 3, 10], ['0175', 3, 12]]],
+  ['gm-b', 'Gym Machines B', 'figureStrength', [['0585', 3, 12], ['0586', 3, 12], ['0603', 3, 10], ['0861', 3, 10], ['0241', 3, 12]]],
+  ['gm-c', 'Gym Machines C', 'figureStrength', [['0739', 3, 10], ['2144', 3, 10], ['2330', 3, 10], ['0868', 3, 12], ['0175', 3, 12]]]
+]
+
 // One routine run as a circuit: every exercise timed for `sec` seconds under the `time` policy
 // (time mode defaults to no progression, so it must be asked for), all sharing superset id `sg`
 // so the workout moves through them as one round, with `restSec` of rest after each round.
@@ -171,6 +180,7 @@ const PLANS = {
   'home-hypertrophy': { goal: 'hypertrophy', routines: HOME_HYPERTROPHY, schedule: [[1, 'hh-a'], [3, 'hh-b'], [5, 'hh-c']] },
   'home-upper-lower': { goal: 'hypertrophy', routines: HOME_UPPER_LOWER, schedule: [[1, 'hul-upper-a'], [2, 'hul-lower-a'], [4, 'hul-upper-b'], [5, 'hul-lower-b']] },
   'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] },
+  'gym-machines': { goal: 'general', routines: GYM_MACHINES, schedule: [[1, 'gm-a'], [3, 'gm-b'], [5, 'gm-c']] },
   'bodyweight-conditioning': { goal: 'conditioning', routines: BODYWEIGHT_CONDITIONING, schedule: [[1, 'bc-a'], [3, 'bc-b'], [5, 'bc-c']] },
   mobility: { goal: 'mobility', routines: MOBILITY, schedule: [[1, 'mobility'], [4, 'mobility']] }
 }

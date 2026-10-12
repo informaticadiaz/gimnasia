@@ -75,6 +75,11 @@ const APPROVED = {
     [3, 'Dumbbell + Bench B', [['0431', 3, 8], ['0300', 4, 6], ['0405', 4, 6], ['0292', 4, 8], ['0375', 3, 10]]],
     [5, 'Dumbbell + Bench C', [['0410', 3, 8], ['1459', 3, 8], ['0352', 4, 6], ['0292', 4, 8], ['0294', 3, 10]]],
   ],
+  'gym-machines': [
+    [1, 'Gym Machines A', [['0739', 3, 10], ['0577', 3, 10], ['2330', 3, 10], ['0861', 3, 10], ['0175', 3, 12]]],
+    [3, 'Gym Machines B', [['0585', 3, 12], ['0586', 3, 12], ['0603', 3, 10], ['0861', 3, 10], ['0241', 3, 12]]],
+    [5, 'Gym Machines C', [['0739', 3, 10], ['2144', 3, 10], ['2330', 3, 10], ['0868', 3, 12], ['0175', 3, 12]]],
+  ],
   'bodyweight-conditioning': [
     [1, 'Conditioning A', [['0514', 3, '30s'], ['0662', 3, '30s'], ['0630', 3, '30s'], ['3561', 3, '30s'], ['1160', 3, '30s']]],
     [3, 'Conditioning B', [['3361', 3, '30s'], ['1471', 3, '30s'], ['3636', 3, '30s'], ['2368', 3, '30s'], ['0464', 3, '30s']]],
@@ -85,7 +90,7 @@ const APPROVED = {
 const shape = r => r.ex.map(e => [e.id, e.sets, e.mode === 'time' ? `${e.sec}s` : e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the fifteen plans, each with its goal and the day count read off the schedule', () => {
+  it('offers exactly the sixteen plans, each with its goal and the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
       { id: 'ppl', days: 3, goal: 'hypertrophy' }, { id: 'upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'full-body', days: 3, goal: 'general' }, { id: '5x5', days: 3, goal: 'strength' },
@@ -94,6 +99,7 @@ describe('starter plan catalog', () => {
       { id: 'kettlebell', days: 3, goal: 'strength' }, { id: 'home-hypertrophy', days: 3, goal: 'hypertrophy' },
       { id: 'home-upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'dumbbell-bench', days: 3, goal: 'strength' },
+      { id: 'gym-machines', days: 3, goal: 'general' },
       { id: 'bodyweight-conditioning', days: 3, goal: 'conditioning' },
       { id: 'mobility', days: 2, goal: 'mobility' },
     ])
@@ -153,6 +159,14 @@ describe('home upper/lower equipment boundary', () => {
   it('uses only dumbbells or bodyweight catalog entries, never gym machines', () => {
     for (const exercise of buildStarterPlan('home-upper-lower').routines.flatMap(r => r.ex)) {
       expect(['dumbbell', 'body weight'], exercise.id).toContain(EXIDX[exercise.id].eq)
+    }
+  })
+})
+
+describe('gym machines equipment boundary', () => {
+  it('uses only machine or cable catalog entries', () => {
+    for (const exercise of buildStarterPlan('gym-machines').routines.flatMap(r => r.ex)) {
+      expect(['sled machine', 'leverage machine', 'cable'], exercise.id).toContain(EXIDX[exercise.id].eq)
     }
   })
 })

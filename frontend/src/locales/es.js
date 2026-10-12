@@ -249,6 +249,8 @@ export default {
   'Home Upper / Lower': 'Superior / Inferior en casa',
   'Dumbbells and a pull-up bar, upper and lower body twice a week.': 'Mancuernas y una barra de dominadas, tren superior e inferior dos veces por semana.',
   'Dumbbell + Bench': 'Mancuernas + banco',
+  'Gym Machines Starter': 'Inicio con máquinas de gimnasio',
+  'Machines and cables for three beginner full-body sessions a week.': 'Máquinas y cables para tres sesiones semanales de cuerpo completo para principiantes.',
   'Hypertrophy': 'Hipertrofia',
   'Conditioning': 'Acondicionamiento',
   'Bodyweight Conditioning': 'Acondicionamiento con peso corporal',

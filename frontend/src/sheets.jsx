@@ -104,6 +104,7 @@ const PLAN_COPY = {
   'home-hypertrophy': () => ({ name: t('Home Hypertrophy'), about: t('Dumbbells and a pull-up bar for muscle growth, three sessions a week.') }),
   'home-upper-lower': () => ({ name: t('Home Upper / Lower'), about: t('Dumbbells and a pull-up bar, upper and lower body twice a week.') }),
   'dumbbell-bench': () => ({ name: t('Dumbbell + Bench'), about: t('Dumbbells and a flat bench for strength, three sessions a week.') }),
+  'gym-machines': () => ({ name: t('Gym Machines Starter'), where: t('At the gym'), about: t('Machines and cables for three beginner full-body sessions a week.') }),
   'bodyweight-conditioning': () => ({ name: t('Bodyweight Conditioning'), about: t('No equipment, one timed circuit a session, three sessions a week.') }),
   mobility: () => ({ name: t('Mobility'), about: t('No equipment, gentle full-body holds twice a week.') })
 }

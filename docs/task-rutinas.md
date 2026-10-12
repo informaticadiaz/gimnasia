@@ -75,6 +75,7 @@ approval.
 | 6 | Mobility | Mobility | E0 | Gentle full-body timed holds; manual 20 s → 30 s progression. | done |
 | 7 | Gym program briefs | — | E6 | Retroactive documentation for the published `ppl`, `upper-lower`, and `full-body` programs and their existing sessions; retrospective audit remains separate. | done |
 | 8 | Home Upper/Lower | Hypertrophy | E3 + E1 | Intermediate home split with dumbbells and a pull-up bar; four standard sessions. | done |
+| 9 | Gym Machines Starter | General fitness | E6 | Beginner gym introduction using machines and cables; three standard full-body sessions. | done |
 
 ## Authorized projections
 
@@ -91,7 +92,6 @@ product approval.
 
 | ID | Candidate | Goal | Equip. | Level | Days | Length | Split | Setting / audience |
 | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
-| P3 | Gym Machines Starter | General fitness | E6 (machines, cable) | Beginner | 3 | Standard | Full body | Gym |
 | P4 | Intermediate Strength | Strength | E6 (barbell) | Intermediate | 4 | Long | Upper/lower | Gym |
 | P5 | Body-part Split | Hypertrophy | E6 | Advanced | 5 | Long | Body-part | Gym |
 | P6 | Travel Kit | General fitness | E0 + E2 | Beginner | 3 | Short | Full body | Travel |
