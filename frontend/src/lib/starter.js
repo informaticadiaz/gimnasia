@@ -135,6 +135,17 @@ const GYM_MACHINES = [
   ['gm-c', 'Gym Machines C', 'figureStrength', [['0739', 3, 10], ['2144', 3, 10], ['2330', 3, 10], ['0868', 3, 12], ['0175', 3, 12]]]
 ]
 
+// Barbell, rack, and bench (docs/ROUTINE_INTERMEDIATE_STRENGTH.md). This four-day intermediate
+// upper/lower plan keeps the highest-skill compound work first, then follows with barbell-only
+// assistance. Each session explicitly chooses linear progression: add the catalog-derived load
+// step after every complete prescription and deload after three consecutive missed sessions.
+const INTERMEDIATE_STRENGTH = [
+  ['is-upper-a', 'Strength Upper A', 'barbell', [['0025', 4, 5], ['0027', 4, 6], ['0091', 3, 6], ['0031', 3, 8], ['0061', 3, 8]], 'linear'],
+  ['is-lower-a', 'Strength Lower A', 'legs', [['0043', 4, 5], ['0085', 4, 6], ['0054', 3, 8], ['1372', 3, 10], ['0084', 3, 8]], 'linear'],
+  ['is-upper-b', 'Strength Upper B', 'barbell', [['0047', 4, 5], ['0027', 4, 6], ['0091', 3, 6], ['0031', 3, 8], ['0061', 3, 8]], 'linear'],
+  ['is-lower-b', 'Strength Lower B', 'legs', [['0032', 3, 5], ['0042', 4, 5], ['0085', 3, 6], ['1372', 3, 10], ['0084', 3, 8]], 'linear']
+]
+
 // One routine run as a circuit: every exercise timed for `sec` seconds under the `time` policy
 // (time mode defaults to no progression, so it must be asked for), all sharing superset id `sg`
 // so the workout moves through them as one round, with `restSec` of rest after each round.
@@ -181,13 +192,15 @@ const PLANS = {
   'home-upper-lower': { goal: 'hypertrophy', routines: HOME_UPPER_LOWER, schedule: [[1, 'hul-upper-a'], [2, 'hul-lower-a'], [4, 'hul-upper-b'], [5, 'hul-lower-b']] },
   'dumbbell-bench': { goal: 'strength', routines: DUMBBELL_BENCH, schedule: [[1, 'dbb-a'], [3, 'dbb-b'], [5, 'dbb-c']] },
   'gym-machines': { goal: 'general', routines: GYM_MACHINES, schedule: [[1, 'gm-a'], [3, 'gm-b'], [5, 'gm-c']] },
+  'intermediate-strength': { goal: 'strength', routines: INTERMEDIATE_STRENGTH, schedule: [[1, 'is-upper-a'], [2, 'is-lower-a'], [4, 'is-upper-b'], [5, 'is-lower-b']] },
   'bodyweight-conditioning': { goal: 'conditioning', routines: BODYWEIGHT_CONDITIONING, schedule: [[1, 'bc-a'], [3, 'bc-b'], [5, 'bc-c']] },
   mobility: { goal: 'mobility', routines: MOBILITY, schedule: [[1, 'mobility'], [4, 'mobility']] }
 }
 
 const build = routines =>
-  routines.map(([, name, emoji, list]) => ({
+  routines.map(([, name, emoji, list, prog]) => ({
     id: uid(), name, emoji,
+    ...(prog && { prog }),
     // a timed exercise has no reps (null), so the key is left out rather than stored empty
     ex: list.map(([id, sets, reps, extra]) => ({ id, sets, ...(reps != null && { reps }), weight: 0, ...extra }))
   }))

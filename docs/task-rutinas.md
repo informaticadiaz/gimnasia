@@ -41,6 +41,7 @@ uses its program ids and links only to track documentation and future prioritiza
 | `5x5` | Strength | [Intrvl 5×5](EXTERNAL_ROUTINE_INTRVL_STRENGTH_5X5.md) |
 | `bodyweight-conditioning` | Conditioning | [Bodyweight Conditioning](ROUTINE_BODYWEIGHT_CONDITIONING.md) |
 | `express-bodyweight` | General fitness | [Express Bodyweight](ROUTINE_EXPRESS_BODYWEIGHT.md) |
+| `intermediate-strength` | Strength | [Intermediate Strength](ROUTINE_INTERMEDIATE_STRENGTH.md) |
 | `mobility` | Mobility | [Mobility](ROUTINE_MOBILITY.md) |
 
 The remaining published programs are listed in the catalog. Their omission from this short table
@@ -92,7 +93,6 @@ product approval.
 
 | ID | Candidate | Goal | Equip. | Level | Days | Length | Split | Setting / audience |
 | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
-| P4 | Intermediate Strength | Strength | E6 (barbell) | Intermediate | 4 | Long | Upper/lower | Gym |
 | P5 | Body-part Split | Hypertrophy | E6 | Advanced | 5 | Long | Body-part | Gym |
 | P6 | Travel Kit | General fitness | E0 + E2 | Beginner | 3 | Short | Full body | Travel |
 | P7 | Active Aging | General fitness | E0 + E2 | Beginner | 2 | Short | Full body | Home / older adult |
@@ -104,8 +104,8 @@ Open questions the projections raise (resolve before the first one that needs it
 
 - **Add-on plans (P10).** A plan that complements another one would share weekdays with it; the
   plan model today assigns whole days. Needs a design decision before P10.
-- **Explicit progression (P4, P5).** Intermediate plans only make sense with a chosen progression
-  rule — depends on the explicit-progression supporting task.
+- **Explicit progression (P5).** Intermediate and advanced plans only make sense with a chosen
+  progression rule — P4 uses explicit routine-level `linear` progression.
 - **Audience safety wording (P7, P8).** Needs a reviewed boundary text shared by every
   special-audience plan, not written per plan.
 - **Chooser overload.** Ten more plans on top of nine makes the grouping task below mandatory.
@@ -143,3 +143,5 @@ Open questions the projections raise (resolve before the first one that needs it
 - 2026-10-11 — #7 delivered retrospective documentation for the published PPL, Upper/Lower, and Full Body programs and their existing sessions. This did not create three autonomous programs or an audit result.
 - 2026-10-12 — P1 Express Bodyweight shipped: a beginner E0, Mon/Wed/Fri general-fitness plan with four movements and two sets each (8 work sets per session).
 - 2026-10-12 — P2 Home Upper/Lower shipped: an intermediate E3 + E1 hypertrophy plan with four home sessions (upper/lower Monday/Tuesday/Thursday/Friday).
+- 2026-10-12 — P3 Gym Machines Starter shipped: a beginner E6 general-fitness plan with three machine and cable full-body sessions (Monday/Wednesday/Friday).
+- 2026-10-12 — P4 Intermediate Strength shipped: an intermediate E6 barbell strength plan with four long upper/lower sessions (Monday/Tuesday/Thursday/Friday) and explicit routine-level `linear` progression.

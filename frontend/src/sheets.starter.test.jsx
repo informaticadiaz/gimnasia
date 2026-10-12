@@ -56,7 +56,7 @@ describe('starter plan chooser', () => {
     const groups = [...host.querySelectorAll('h4.sec')].map(h => [h.textContent, [...h.nextElementSibling.querySelectorAll('.item .tt')].map(el => el.textContent)])
     expect(groups).toEqual([
       ['General fitness', ['Full Body', 'Bodyweight', 'Express Bodyweight', 'Dumbbell', 'Pull-up Bar', 'Resistance Band', 'Gym Machines Starter']],
-      ['Strength', ['5×5', 'Kettlebell', 'Dumbbell + Bench']],
+      ['Strength', ['5×5', 'Kettlebell', 'Dumbbell + Bench', 'Intermediate Strength']],
       ['Hypertrophy', ['Push / Pull / Legs', 'Upper / Lower', 'Home Hypertrophy', 'Home Upper / Lower']],
       ['Conditioning', ['Bodyweight Conditioning']],
       ['Mobility', ['Mobility']],
@@ -68,7 +68,7 @@ describe('starter plan chooser', () => {
     starterPlanSheet()
     const host = renderTop()
     const atGym = name => rowFor(host, name).querySelector('.ss').textContent.startsWith('At the gym · ')
-    for (const name of ['Push / Pull / Legs', 'Upper / Lower', 'Full Body', '5×5', 'Gym Machines Starter']) expect(atGym(name), name).toBe(true)
+    for (const name of ['Push / Pull / Legs', 'Upper / Lower', 'Full Body', '5×5', 'Gym Machines Starter', 'Intermediate Strength']) expect(atGym(name), name).toBe(true)
     for (const name of ['Bodyweight', 'Express Bodyweight', 'Dumbbell', 'Kettlebell', 'Home Hypertrophy', 'Home Upper / Lower', 'Dumbbell + Bench']) expect(atGym(name), name).toBe(false)
   })
 

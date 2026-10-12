@@ -80,6 +80,12 @@ const APPROVED = {
     [3, 'Gym Machines B', [['0585', 3, 12], ['0586', 3, 12], ['0603', 3, 10], ['0861', 3, 10], ['0241', 3, 12]]],
     [5, 'Gym Machines C', [['0739', 3, 10], ['2144', 3, 10], ['2330', 3, 10], ['0868', 3, 12], ['0175', 3, 12]]],
   ],
+  'intermediate-strength': [
+    [1, 'Strength Upper A', [['0025', 4, 5], ['0027', 4, 6], ['0091', 3, 6], ['0031', 3, 8], ['0061', 3, 8]]],
+    [2, 'Strength Lower A', [['0043', 4, 5], ['0085', 4, 6], ['0054', 3, 8], ['1372', 3, 10], ['0084', 3, 8]]],
+    [4, 'Strength Upper B', [['0047', 4, 5], ['0027', 4, 6], ['0091', 3, 6], ['0031', 3, 8], ['0061', 3, 8]]],
+    [5, 'Strength Lower B', [['0032', 3, 5], ['0042', 4, 5], ['0085', 3, 6], ['1372', 3, 10], ['0084', 3, 8]]],
+  ],
   'bodyweight-conditioning': [
     [1, 'Conditioning A', [['0514', 3, '30s'], ['0662', 3, '30s'], ['0630', 3, '30s'], ['3561', 3, '30s'], ['1160', 3, '30s']]],
     [3, 'Conditioning B', [['3361', 3, '30s'], ['1471', 3, '30s'], ['3636', 3, '30s'], ['2368', 3, '30s'], ['0464', 3, '30s']]],
@@ -90,7 +96,7 @@ const APPROVED = {
 const shape = r => r.ex.map(e => [e.id, e.sets, e.mode === 'time' ? `${e.sec}s` : e.reps])
 
 describe('starter plan catalog', () => {
-  it('offers exactly the sixteen plans, each with its goal and the day count read off the schedule', () => {
+  it('offers exactly the seventeen plans, each with its goal and the day count read off the schedule', () => {
     expect(starterPlanOptions()).toEqual([
       { id: 'ppl', days: 3, goal: 'hypertrophy' }, { id: 'upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'full-body', days: 3, goal: 'general' }, { id: '5x5', days: 3, goal: 'strength' },
@@ -100,6 +106,7 @@ describe('starter plan catalog', () => {
       { id: 'home-upper-lower', days: 4, goal: 'hypertrophy' },
       { id: 'dumbbell-bench', days: 3, goal: 'strength' },
       { id: 'gym-machines', days: 3, goal: 'general' },
+      { id: 'intermediate-strength', days: 4, goal: 'strength' },
       { id: 'bodyweight-conditioning', days: 3, goal: 'conditioning' },
       { id: 'mobility', days: 2, goal: 'mobility' },
     ])
@@ -167,6 +174,18 @@ describe('gym machines equipment boundary', () => {
   it('uses only machine or cable catalog entries', () => {
     for (const exercise of buildStarterPlan('gym-machines').routines.flatMap(r => r.ex)) {
       expect(['sled machine', 'leverage machine', 'cable'], exercise.id).toContain(EXIDX[exercise.id].eq)
+    }
+  })
+})
+
+describe('intermediate strength equipment and progression boundary', () => {
+  it('uses only barbell catalog entries and explicitly applies linear progression to every routine', () => {
+    for (const routine of buildStarterPlan('intermediate-strength').routines) {
+      expect(routine.prog, routine.name).toBe('linear')
+      for (const exercise of routine.ex) {
+        expect(EXIDX[exercise.id].eq, exercise.id).toBe('barbell')
+        expect(policyFor(exercise, routine, 'reps'), exercise.id).toBe('linear')
+      }
     }
   })
 })

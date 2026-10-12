@@ -251,6 +251,8 @@ export default {
   'Dumbbell + Bench': 'Mancuernas + banco',
   'Gym Machines Starter': 'Inicio con máquinas de gimnasio',
   'Machines and cables for three beginner full-body sessions a week.': 'Máquinas y cables para tres sesiones semanales de cuerpo completo para principiantes.',
+  'Intermediate Strength': 'Fuerza intermedia',
+  'Barbell upper and lower sessions twice a week for intermediate lifters.': 'Sesiones de tren superior e inferior con barra dos veces por semana para personas de nivel intermedio.',
   'Hypertrophy': 'Hipertrofia',
   'Conditioning': 'Acondicionamiento',
   'Bodyweight Conditioning': 'Acondicionamiento con peso corporal',

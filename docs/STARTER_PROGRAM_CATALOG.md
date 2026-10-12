@@ -22,7 +22,7 @@ The initial catalog covers these product categories:
 
 | Category | Current published coverage | Evidence |
 | --- | --- | --- |
-| Strength | `5x5`, `kettlebell`, `dumbbell-bench` | Their `goal` is `strength` in `starter.js`. |
+| Strength | `5x5`, `kettlebell`, `dumbbell-bench`, `intermediate-strength` | Their `goal` is `strength` in `starter.js`. |
 | Hypertrophy | `ppl`, `upper-lower`, `home-hypertrophy` | Their `goal` is `hypertrophy` in `starter.js`. |
 | Conditioning | `bodyweight-conditioning` | Its `goal` is `conditioning` in `starter.js`. |
 | Mobility | `mobility` | Its `goal` is `mobility` in `starter.js`. |
@@ -52,6 +52,7 @@ Routine-specific documents record the published sessions and retrospective evide
 | `home-upper-lower` | Hypertrophy | 4 | [Home Upper / Lower](ROUTINE_HOME_UPPER_LOWER.md) |
 | `dumbbell-bench` | Strength | 3 | [Dumbbell + Bench](ROUTINE_DUMBBELL_BENCH.md) |
 | `gym-machines` | General fitness | 3 | [Gym Machines Starter](ROUTINE_GYM_MACHINES.md) |
+| `intermediate-strength` | Strength | 4 | [Intermediate Strength](ROUTINE_INTERMEDIATE_STRENGTH.md) |
 | `bodyweight-conditioning` | Conditioning | 3 | [Bodyweight Conditioning](ROUTINE_BODYWEIGHT_CONDITIONING.md) |
 | `mobility` | Mobility | 2 | [Mobility](ROUTINE_MOBILITY.md) |
 
